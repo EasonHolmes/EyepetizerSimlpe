@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="245dp"
+        android:background="@color/white"
+        android:foreground="?selectableItemBackgroundBorderless"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:transitionName="@string/featured_item_share_txt"
+            tools:ignore="UnusedAttribute"
+            tools:targetApi="lollipop"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@color/black_trans"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/big_17text_size"
+                tools:text="黑夜骑士：越老越野的野孩子"/>
+
+            <TextView
+                android:id="@+id/txt_classes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/normal_14text_size"
+                tools:text="黑夜骑士："
+                />
+
+            <TextView
+                android:id="@+id/txt_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/normal_14text_size"
+                tools:text="越老越野的野孩子"
+                />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>

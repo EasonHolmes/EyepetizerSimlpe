@@ -1,0 +1,94 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="#EBEAE8"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="true"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/tabbar1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:descendantFocusability="blocksDescendants">
+
+
+                <TextView
+                    android:id="@+id/tabbar1_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:drawableTop="@drawable/ic_tab_strip_icon_feed_selected"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="精选"
+                    android:textColor="@color/cui_text_color"
+                    android:textSize="9sp"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tabbar2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:descendantFocusability="blocksDescendants">
+
+
+                <TextView
+                    android:id="@+id/tabbar2_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:drawableTop="@drawable/ic_tab_strip_icon_category"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="发现"
+                    android:textColor="@color/cui_text_color"
+                    android:textSize="9sp"/>
+
+            </RelativeLayout>
+
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/tabbar4"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1.0"-->
+                <!--android:descendantFocusability="blocksDescendants">-->
+
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tabbar4_text"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:drawableTop="@drawable/ic_tab_strip_icon_pgc"-->
+                    <!--android:gravity="center"-->
+                    <!--android:singleLine="true"-->
+                    <!--android:text="作者"-->
+                    <!--android:textColor="@color/cui_text_color"-->
+                    <!--android:textSize="11sp"/>-->
+
+            <!--</RelativeLayout>-->
+        </LinearLayout>
+    </LinearLayout>
+</layout>

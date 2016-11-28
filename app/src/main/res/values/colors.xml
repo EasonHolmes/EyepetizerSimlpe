@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+
+    <color name="colorAccent">#FAFAFA</color>
+    <color name="app_status_color">#afafaf</color>
+    <color name="progress_color">#159588</color>
+
+
+
+    <color name="black_trans">#47000000</color>
+    <color name="black">#000000</color>
+    <color name="white">#FAFAFA</color>
+    <color name="cui_text_color">#888888</color>
+    <color name="background_black_trans">#23000000</color>
+    <color name="stalls_app_bg_color">#F2F2F2</color>
+    <color name="ripple_press_color">#c2c2c2</color>
+    <color name="transtions_color">#00000000</color>
+
+</resources>

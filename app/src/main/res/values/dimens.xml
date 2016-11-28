@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!--toolbar高度-->
+    <dimen name="toolbar_padding_top">0dp</dimen>
+    <dimen name="navi_margn_top">0dp</dimen>
+    <dimen name="toolbar_height">52dp</dimen>
+
+
+    <dimen name="elevation">5dp</dimen>
+    <dimen name="card_radius">11dp</dimen>
+
+
+    <!-- cell的默认高度 -->
+    <dimen name="default_cell_height">44dip</dimen>
+    <!-- 底部 tabbar 高度 -->
+    <dimen name="tabbar_height">48dip</dimen>
+
+    <dimen name="load_more_footer_height_classic">60dp</dimen>
+
+    <dimen name="refresh_header_height_twitter">80dp</dimen>
+    <dimen name="load_more_footer_height_twitter">60dp</dimen>
+    <dimen name="default_button_height">40dp</dimen>
+
+    <dimen name="choose_city_content_height">255dp</dimen>
+    <dimen name="elevation_trantion_z">5dp</dimen>
+
+    <dimen name="normal_14text_size">14sp</dimen>
+    <dimen name="small_12text_size">12sp</dimen>
+    <dimen name="small_13text_size">13sp</dimen>
+    <dimen name="normal_15text_size">15sp</dimen>
+    <dimen name="big_16text_size">16sp</dimen>
+    <dimen name="big_17text_size">17sp</dimen>
+</resources>

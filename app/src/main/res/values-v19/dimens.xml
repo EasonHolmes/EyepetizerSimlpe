@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--toolbar高度-->
+    <dimen name="toolbar_padding_top">23dp</dimen>
+    <dimen name="navi_marign_top">13dp</dimen>
+
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- toolbar（actionbar）颜色 -->
+        <item name="colorPrimary">@color/colorAccent</item>
+        <!-- 状态栏颜色 -->
+        <item name="colorPrimaryDark">@color/app_status_color</item>
+        <item name="colorAccent">@color/app_status_color</item>
+        <!--<item name="windowActionModeOverlay">true</item>-->
+        <!--<item name="android:navigationBarColor">@color/app_status_color</item>-->
+
+        <!--activity透明背使应用启动没有白屏-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        <!--<item name="android:activityOpenEnterAnimation">@anim/in_from_right</item>-->
+        <!--<item name="android:activityCloseEnterAnimation">@anim/slide_out_right</item>-->
+        <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
+    </style>
+</resources>
