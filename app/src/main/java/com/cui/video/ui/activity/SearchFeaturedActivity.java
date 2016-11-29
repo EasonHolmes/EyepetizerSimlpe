@@ -34,7 +34,8 @@ public class SearchFeaturedActivity extends AbstractBaseActivity<SearchFeaturedA
 
     private final int scaleX_duration = 400;
     private FeaturedAdapter adapter;
-    private int start = 10;
+    private int start;
+    private int num = 10;
     private String queryStr;
 
     @Override
@@ -98,13 +99,14 @@ public class SearchFeaturedActivity extends AbstractBaseActivity<SearchFeaturedA
 
     @Override
     public void getSearchFeaturedList(SearchFeaturedListEntity entity) {
-        if (entity.getItemList().size() > 0 && start == 10) {
+        if (entity.getItemList().size() > 0 && start == num) {
             adapter.setNewData(entity.getItemList());
-            start += 10;
+            start += num;
         } else {
             adapter.addData(entity.getItemList());
-            start += 10;
+            start += num;
         }
+        getActivityHelper().dismissSimpleLoadDialog();
         binding.include.swipeTarget.refresComplete();
     }
 
@@ -136,6 +138,7 @@ public class SearchFeaturedActivity extends AbstractBaseActivity<SearchFeaturedA
         this.queryStr = query;
         start = 10;
         binding.include.swipeTarget.page = 1;
+        getActivityHelper().showSimpleLoadDialog();
         presenter.getSearchFeaturedList(query, start);
         return false;
     }

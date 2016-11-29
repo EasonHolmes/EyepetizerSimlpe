@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VideoPlayerAppcation</string>
+    <string name="app_name">OpenEye</string>
     <string name="list_empty_txt">哎哟喂~还没有数据呢</string>
     <string name="text_loading">正在加载…</string>
     <string name="text_know">我知道了</string>

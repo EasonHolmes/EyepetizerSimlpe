@@ -13,8 +13,8 @@
         android:theme="@style/MyTheme">
         <activity
             android:name=".ui.MainActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -33,8 +33,13 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".ui.activity.ClasssDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".ui.activity.video.PlayerVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
             android:screenOrientation="landscape"/>
 
         <!--Glide自定义Module-->

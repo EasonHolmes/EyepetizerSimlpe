@@ -12,6 +12,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.TransitionManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -20,6 +22,7 @@ import android.widget.TextView;
 import com.cui.video.helper.ActivityHelper;
 import com.cui.video.presenter.AbstractBasePresenter;
 import com.cui.video.view.BaseContract;
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import rx.Subscription;
 
@@ -27,7 +30,7 @@ import rx.Subscription;
  * Created by cuiyang on 2016/11/20.
  */
 
-public abstract class AbstractBaseActivity<B extends ViewDataBinding, T extends AbstractBasePresenter> extends SwipeActivity
+public abstract class AbstractBaseActivity<B extends ViewDataBinding, T extends AbstractBasePresenter> extends RxAppCompatActivity
         implements View.OnClickListener, BaseContract.BaseView {
 
     protected Toolbar mToolbar;
@@ -99,18 +102,38 @@ public abstract class AbstractBaseActivity<B extends ViewDataBinding, T extends 
     //设置setContentViewId
     protected abstract int setDataBindingContentViewId();
 
-    protected void initToolbar(int titleResourceId, boolean isNeedBack) {
+    protected void initToolbar(String titleStr, boolean isNeedBack) {
         mToolbar = (Toolbar) findViewById(R.id.mToolBar);
-        toolbarTitle = (TextView) findViewById(R.id.mToolBar);
-        toolbarTitle.setText(titleResourceId);
         assert mToolbar != null;
-        mToolbar.setTitle("");
+        mToolbar.setTitle(titleStr);
         setSupportActionBar(mToolbar);
         if (isNeedBack) {
-            setSwipeEnabled(true);
+//            setSwipeEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    protected void initToolbar(int titleResourceId, boolean isNeedBack) {
+        initToolbar(getResources().getString(titleResourceId), isNeedBack);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home:
+                onBackPressed();//在这调用这个相当于finish。但finish不会调用this.onbackpressed就等于无返回键没有动画了
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**

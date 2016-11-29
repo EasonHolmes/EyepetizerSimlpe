@@ -1,6 +1,7 @@
 package com.cui.video.http;
 
 
+import com.cui.video.entity.ClasssDetailEntity;
 import com.cui.video.entity.FindListEntity;
 import com.cui.video.entity.SearchFeaturedListEntity;
 import com.cui.video.entity.fetured.FeturedListEntity;
@@ -27,6 +28,7 @@ public interface ApiService {
 
     /**
      * 分页精选
+     *
      * @param date
      * @return
      */
@@ -35,6 +37,7 @@ public interface ApiService {
 
     /**
      * 第一个精选
+     *
      * @return
      */
     @GET("v2/feed?num=2")
@@ -42,6 +45,7 @@ public interface ApiService {
 
     /**
      * 发现
+     *
      * @param url
      * @return
      */
@@ -51,10 +55,17 @@ public interface ApiService {
 
     /**
      * 搜索精选
+     *
      * @param queryStr
      * @param start
      * @return
      */
     @GET("v1/search")
     Observable<SearchFeaturedListEntity> getSearchFeatured(@Query("query") String queryStr, @Query("start") int start);
+
+
+    @GET("v3/videos?num=10")
+    Observable<ClasssDetailEntity> getClasssDeatilList(
+            @Query("start") int start, @Query("categoryId") int categoryId,
+            @Query("strategy") String strategy);
 }

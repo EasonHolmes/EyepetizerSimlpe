@@ -29,7 +29,7 @@ public class FindListPresenter extends AbstractBasePresenter<FindListFragment>
                 .getFindList(findUrl)
                 .map(findListEntity -> {
                     for (int i = 0; i < findListEntity.getItemList().size(); i++) {
-                        if (StringUtils.isEmpty(findListEntity.getItemList().get(i).getData().getTitle()))
+                        if (!findListEntity.getItemList().get(i).getData().isShade())
                             findListEntity.getItemList().remove(i);
                     }
                     return findListEntity;

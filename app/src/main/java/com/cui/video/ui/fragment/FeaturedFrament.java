@@ -65,8 +65,8 @@ public class FeaturedFrament extends AbstractBaseFragment<FeaturedFragmentBindin
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id. img_search_featured:
+        switch (view.getId()) {
+            case R.id.img_search_featured:
                 startActivity(new Intent(activity, SearchFeaturedActivity.class));
                 activity.overridePendingTransition(0, 0);
                 break;
@@ -86,13 +86,13 @@ public class FeaturedFrament extends AbstractBaseFragment<FeaturedFragmentBindin
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             ActivityOptions activityOptionsCompat =
                     ActivityOptions.makeSceneTransitionAnimation(activity, view, getResources().getString(R.string.featured_item_share_txt));
-            startActivity(i, activityOptionsCompat.toBundle());
+            activity.startActivity(i, activityOptionsCompat.toBundle());
         } else {
             float x = view.getX();
             float y = view.getY();
             i.putExtra(PX, x);
             i.putExtra(PY, y);
-            startActivity(i);
+            activity.startActivity(i);
             activity.overridePendingTransition(0, 0);
         }
     }

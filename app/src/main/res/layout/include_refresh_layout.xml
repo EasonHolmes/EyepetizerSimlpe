@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/stalls_app_bg_color"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:swipe_style="classic">
         <!--header footer 和 需要刷新的id是固定的不能变更否则swipetolayout找不到-->
         <include

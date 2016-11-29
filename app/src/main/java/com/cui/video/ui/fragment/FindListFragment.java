@@ -1,5 +1,6 @@
 package com.cui.video.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.cui.video.adapter.FindListAdapter;
 import com.cui.video.databinding.FindFragmentBinding;
 import com.cui.video.entity.FindListEntity;
 import com.cui.video.presenter.iml.FindListPresenter;
+import com.cui.video.ui.activity.ClasssDetailActivity;
 import com.cui.video.utils.LogUtils;
 import com.cui.video.view.iml.FindListContract;
 import com.cui.video.widget.SpaceGridItemDecoration;
@@ -19,6 +21,8 @@ import cn.iwgang.familiarrecyclerview.FamiliarRecyclerView;
 public class FindListFragment extends AbstractBaseFragment<FindFragmentBinding, FindListPresenter>
         implements FindListContract.FindListView, FamiliarRecyclerView.OnItemClickListener {
     private FindListAdapter adapter;
+    public static final String CATEGORYID = "detail_categoryId";
+    public static final String CATEGORYNAME = "detail_title";
 
     @Override
     protected void onFragmentViewCreated(View view, Bundle savedInstanceState) {
@@ -54,7 +58,10 @@ public class FindListFragment extends AbstractBaseFragment<FindFragmentBinding, 
 
     @Override
     public void onItemClick(FamiliarRecyclerView familiarRecyclerView, View view, int position) {
-
+        Intent intent = new Intent(activity, ClasssDetailActivity.class);
+        intent.putExtra(CATEGORYID, adapter.getItem(position).getData().getId());
+        intent.putExtra(CATEGORYNAME, adapter.getItem(position).getData().getTitle());
+        activity.startActivity(intent);
     }
 
     @Override
