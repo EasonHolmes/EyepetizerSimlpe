@@ -1,8 +1,5 @@
 package com.cui.video.entity;
 
-import com.cui.video.entity.fetured.DataEntity;
-import com.cui.video.entity.fetured.ItemList;
-
 import java.util.List;
 
 /**

@@ -1,6 +1,5 @@
-package com.cui.video.entity.fetured;
+package com.cui.video.entity;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class FeturedListEntity {

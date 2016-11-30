@@ -1,7 +1,11 @@
 package com.cui.video.ui.activity;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
@@ -11,20 +15,23 @@ import com.cui.video.adapter.FeaturedAdapter;
 import com.cui.video.databinding.ClasssDetailActBinding;
 import com.cui.video.entity.ClasssDetailEntity;
 import com.cui.video.presenter.iml.ClasssDetailPresenter;
+import com.cui.video.ui.fragment.FeaturedFrament;
 import com.cui.video.ui.fragment.FindListFragment;
 import com.cui.video.utils.img.ImageLoaderDisplay;
 import com.cui.video.view.iml.ClasssDetailContract;
 
 import cn.iwgang.familiarrecyclerview.FamiliarRecyclerView;
 
+import static com.cui.video.ui.fragment.FeaturedFrament.FEATURED_DETAIL_ENTITY;
+
 public class ClasssDetailActivity extends AbstractBaseActivity<ClasssDetailActBinding, ClasssDetailPresenter>
-        implements ClasssDetailContract.ClasssDetailView, FamiliarRecyclerView.OnItemClickListener, OnLoadMoreListener {
+        implements ClasssDetailContract.ClasssDetailView, FamiliarRecyclerView.OnItemClickListener, OnLoadMoreListener, MenuItem.OnMenuItemClickListener {
     private FeaturedAdapter adapter;
     private final int num = 10;//每页的条数
     private int start = 0;
     private int categoryId;
     private String toolbarTitle;
-    private final String strategy_date = "date";
+    private String strategyStr = "date";
 
     @Override
     protected void onCreated(Bundle savedInstanceState) {
@@ -45,10 +52,7 @@ public class ClasssDetailActivity extends AbstractBaseActivity<ClasssDetailActBi
         binding.include.swipeTarget.setOnItemClickListener(this);
         binding.include.swipeToLoadLayout.setRefreshEnabled(false);
 
-
-        getActivityHelper().showSimpleLoadDialog();
-
-        presenter.getClasssDeatilList(start, categoryId, strategy_date);
+        presenter.getClasssDeatilList(start, categoryId, strategyStr);
     }
 
     /**
@@ -73,19 +77,48 @@ public class ClasssDetailActivity extends AbstractBaseActivity<ClasssDetailActBi
     }
 
     @Override
-    public void onItemClick(FamiliarRecyclerView familiarRecyclerView, View view, int position) {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.classs_detail_menu, menu);
+        menu.getItem(0).setOnMenuItemClickListener(this);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClick(FamiliarRecyclerView familiarRecyclerView, View view, int position) {
+        Intent i = new Intent();
+        i.setClass(this, FeaturedDeatilActivity.class);
+        i.putExtra(FEATURED_DETAIL_ENTITY, adapter.getItem(position));
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            ActivityOptions activityOptionsCompat =
+                    ActivityOptions.makeSceneTransitionAnimation(this, view, getResources().getString(R.string.featured_item_share_txt));
+            startActivity(i, activityOptionsCompat.toBundle());
+        } else {
+            float x = view.getX();
+            float y = view.getY();
+            i.putExtra(FeaturedFrament.PX, x);
+            i.putExtra(FeaturedFrament.PY, y);
+            startActivity(i);
+            overridePendingTransition(0, 0);
+        }
     }
 
     @Override
     public void getClasssDeatilList(ClasssDetailEntity entity) {
-        if (entity.getItemList().size() > 0 && start == 0) {
-            ImageLoaderDisplay.imageLoader(this, binding.imtToolbar, entity.getItemList().get(5).data.cover.feed);
-            adapter.setNewData(entity.getItemList());
-            start += num;
-        } else {
-            adapter.addData(entity.getItemList());
-            start += num;
+        if (entity.getItemList().size() > 0) {
+            if (start == 0) {
+                ImageLoaderDisplay.imageLoader(this, binding.imtToolbar, entity.getItemList().get(5).data.cover.feed);
+                adapter.setNewData(entity.getItemList());
+                binding.include.swipeTarget.smoothScrollToPosition(0);
+                start += num;
+            } else {
+                adapter.addData(entity.getItemList());
+                start += num;
+            }
         }
         getActivityHelper().dismissSimpleLoadDialog();
         binding.include.swipeTarget.refresComplete();
@@ -93,6 +126,22 @@ public class ClasssDetailActivity extends AbstractBaseActivity<ClasssDetailActBi
 
     @Override
     public void onLoadMore() {
-        presenter.getClasssDeatilList(start, categoryId, strategy_date);
+        presenter.getClasssDeatilList(start, categoryId, strategyStr);
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        getActivityHelper().showSimpleLoadDialog();
+        start = 0;
+        if (strategyStr.equals("date")) {
+            strategyStr = "shareCount";
+            menuItem.setTitle("按时间排序");
+            presenter.getClasssDeatilList(start, categoryId, strategyStr);
+        } else {
+            strategyStr = "date";
+            presenter.getClasssDeatilList(start, categoryId, strategyStr);
+            menuItem.setTitle("按分享排序");
+        }
+        return false;
     }
 }

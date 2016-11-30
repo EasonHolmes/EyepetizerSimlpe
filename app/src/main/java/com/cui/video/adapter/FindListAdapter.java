@@ -7,14 +7,14 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.cui.video.AbstractBaseAdapter;
 import com.cui.video.R;
 import com.cui.video.databinding.ItemFindBinding;
-import com.cui.video.entity.FindListEntity;
+import com.cui.video.entity.ItemList;
 import com.cui.video.utils.img.ImageLoaderDisplay;
 
 /**
  * Created by cuiyang on 2016/11/22.
  */
 
-public class FindListAdapter extends AbstractBaseAdapter<FindListEntity.ItemListEntity> {
+public class FindListAdapter extends AbstractBaseAdapter<ItemList> {
     /**
      * 不需要上拉下拉时refreshLayout可传null
      *
@@ -36,8 +36,8 @@ public class FindListAdapter extends AbstractBaseAdapter<FindListEntity.ItemList
         BindingViewHolder viewHolder = (BindingViewHolder) holder;
         ItemFindBinding binding = (ItemFindBinding) viewHolder.getBinding();
 //        super.OpenAnimation(super.SCALE_ANIMA, viewHolder);
-        FindListEntity.ItemListEntity entity = getItem(position);
-        binding.txtTitle.setText(entity.getData().getTitle());
-        ImageLoaderDisplay.imageLoader(mContext, binding.imgItem, entity.getData().getImage());
+        ItemList entity = getItem(position);
+        binding.txtTitle.setText(entity.data.title);
+        ImageLoaderDisplay.imageLoader(mContext, binding.imgItem, entity.data.image);
     }
 }

@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.cui.video.AbstractBaseActivity;
 import com.cui.video.R;
-import com.cui.video.databinding.PlayerVideoActBinding;
 import com.cui.video.entity.PlayerVideoEntity;
 import com.cui.video.manager.VideoApi;
 import com.cui.video.presenter.AbstractBasePresenter;

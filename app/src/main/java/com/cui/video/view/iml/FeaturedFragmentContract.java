@@ -1,10 +1,7 @@
 package com.cui.video.view.iml;
 
-import com.cui.video.entity.fetured.FeturedListEntity;
+import com.cui.video.entity.FeturedListEntity;
 import com.cui.video.view.BaseContract;
-import com.google.gson.JsonObject;
-
-import java.util.List;
 
 public interface FeaturedFragmentContract {
     interface FeaturedFragmentView extends BaseContract.BaseView {

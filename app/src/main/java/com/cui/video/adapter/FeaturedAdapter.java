@@ -8,7 +8,7 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.cui.video.AbstractBaseAdapter;
 import com.cui.video.R;
 import com.cui.video.databinding.ItemFeaturedBinding;
-import com.cui.video.entity.fetured.ItemList;
+import com.cui.video.entity.ItemList;
 import com.cui.video.utils.TimeUtils;
 import com.cui.video.utils.img.ImageLoaderDisplay;
 
@@ -40,7 +40,7 @@ public class FeaturedAdapter extends AbstractBaseAdapter<ItemList> {
         ItemList entity = getItem(position);
         ImageLoaderDisplay.imageLoaderOverride800(mContext, binding.imgItem, entity.data.cover.feed);
         binding.txtTitle.setText(entity.data.title);
-        binding.txtClasses.setText("#" + entity.data.category);
+        binding.txtClasses.setText("#" + entity.data.category+"    /    ");
         binding.txtSubtitle.setText(String.valueOf(TimeUtils.secToTime( entity.data.duration)));
     }
 }

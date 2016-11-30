@@ -7,14 +7,15 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-         android:background="@drawable/ripple_background">
+        android:background="@drawable/ripple_background"
+        android:foreground="?selectableItemBackgroundBorderless">
 
 
         <ImageView
             android:id="@+id/img_item"
             android:layout_width="match_parent"
-            android:scaleType="centerCrop"
-            android:layout_height="200dp"/>
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

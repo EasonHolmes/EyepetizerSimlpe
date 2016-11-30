@@ -11,8 +11,8 @@
         <!--<item name="android:navigationBarColor">@color/app_status_color</item>-->
 
         <!--activity透明背使应用启动没有白屏-->
-        <!--<item name="android:windowIsTranslucent">true</item>-->
-        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
 
         <!--<item name="android:activityOpenEnterAnimation">@anim/in_from_right</item>-->
         <!--<item name="android:activityCloseEnterAnimation">@anim/slide_out_right</item>-->

@@ -1,12 +1,13 @@
 package com.cui.video.view.iml;
 
-import com.cui.video.entity.FindListEntity;
+import com.cui.video.entity.ItemList;
 import com.cui.video.view.BaseContract;
-import com.google.gson.JsonObject;
+
+import java.util.List;
 
 public interface FindListContract {
     interface FindListView extends BaseContract.BaseView {
-        void getFindListData(FindListEntity entity);
+        void getFindListData(List<ItemList> entity);
 
     }
 

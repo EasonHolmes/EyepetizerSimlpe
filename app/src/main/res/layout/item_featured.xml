@@ -7,7 +7,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="245dp"
-        android:background="@color/white"
+        android:background="@drawable/ripple_background"
         android:foreground="?selectableItemBackgroundBorderless"
         android:orientation="vertical">
 
@@ -25,8 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:gravity="center"
             android:background="@color/black_trans"
+            android:gravity="center"
             android:orientation="vertical">
 
             <TextView
@@ -39,27 +39,43 @@
                 android:textSize="@dimen/big_17text_size"
                 tools:text="黑夜骑士：越老越野的野孩子"/>
 
-            <TextView
-                android:id="@+id/txt_classes"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/normal_14text_size"
-                tools:text="黑夜骑士："
-                />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_classes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/normal_14text_size"
+                    tools:text="#广告    /    "
+                    />
+
+                <TextView
+                    android:id="@+id/txt_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/normal_14text_size"
+                    tools:text="0111"
+                    />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/txt_subtitle"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:text="tag"
                 android:textSize="@dimen/normal_14text_size"
-                tools:text="越老越野的野孩子"
-                />
+                android:textColor="@color/black"
+                android:background="@color/black_trans"/>
 
         </LinearLayout>
 

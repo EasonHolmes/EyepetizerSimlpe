@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
-import android.text.TextUtils;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
@@ -16,7 +15,7 @@ import com.cui.video.AbstractBaseActivity;
 import com.cui.video.R;
 import com.cui.video.databinding.FeturedDetailActBinding;
 import com.cui.video.entity.PlayerVideoEntity;
-import com.cui.video.entity.fetured.ItemList;
+import com.cui.video.entity.ItemList;
 import com.cui.video.presenter.iml.FeaturedDetailPresenter;
 import com.cui.video.ui.activity.video.PlayerHelperActivity;
 import com.cui.video.ui.fragment.FeaturedFrament;

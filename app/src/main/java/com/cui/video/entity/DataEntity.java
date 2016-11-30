@@ -1,4 +1,4 @@
-package com.cui.video.entity.fetured;
+package com.cui.video.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;

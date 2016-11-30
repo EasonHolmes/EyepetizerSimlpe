@@ -19,7 +19,6 @@ import com.cui.video.R;
 import com.cui.video.adapter.FeaturedAdapter;
 import com.cui.video.databinding.SearchFeaturedActBinding;
 import com.cui.video.entity.SearchFeaturedListEntity;
-import com.cui.video.entity.fetured.FeturedListEntity;
 import com.cui.video.presenter.iml.SearchFeaturedPresenter;
 import com.cui.video.ui.fragment.FeaturedFrament;
 import com.cui.video.view.iml.SearchFeaturedContract;
@@ -27,7 +26,6 @@ import com.cui.video.view.iml.SearchFeaturedContract;
 import cn.iwgang.familiarrecyclerview.FamiliarRecyclerView;
 
 import static com.cui.video.ui.fragment.FeaturedFrament.FEATURED_DETAIL_ENTITY;
-import static com.cui.video.ui.fragment.FeaturedFrament.PY;
 
 public class SearchFeaturedActivity extends AbstractBaseActivity<SearchFeaturedActBinding, SearchFeaturedPresenter>
         implements SearchFeaturedContract.SearchFeaturedView, FamiliarRecyclerView.OnItemClickListener, SearchView.OnQueryTextListener, OnLoadMoreListener {
@@ -100,11 +98,13 @@ public class SearchFeaturedActivity extends AbstractBaseActivity<SearchFeaturedA
     @Override
     public void getSearchFeaturedList(SearchFeaturedListEntity entity) {
         if (entity.getItemList().size() > 0 && start == num) {
-            adapter.setNewData(entity.getItemList());
-            start += num;
-        } else {
-            adapter.addData(entity.getItemList());
-            start += num;
+            if (start == num) {
+                adapter.setNewData(entity.getItemList());
+                start += num;
+            } else {
+                adapter.addData(entity.getItemList());
+                start += num;
+            }
         }
         getActivityHelper().dismissSimpleLoadDialog();
         binding.include.swipeTarget.refresComplete();

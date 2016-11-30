@@ -4,7 +4,7 @@ package com.cui.video.http;
 import com.cui.video.entity.ClasssDetailEntity;
 import com.cui.video.entity.FindListEntity;
 import com.cui.video.entity.SearchFeaturedListEntity;
-import com.cui.video.entity.fetured.FeturedListEntity;
+import com.cui.video.entity.FeturedListEntity;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;

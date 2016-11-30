@@ -3,11 +3,8 @@ package com.cui.video.ui.fragment;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
@@ -15,8 +12,8 @@ import com.cui.video.AbstractBaseFragment;
 import com.cui.video.R;
 import com.cui.video.adapter.FeaturedAdapter;
 import com.cui.video.databinding.FeaturedFragmentBinding;
-import com.cui.video.entity.fetured.FeturedListEntity;
-import com.cui.video.entity.fetured.ItemList;
+import com.cui.video.entity.FeturedListEntity;
+import com.cui.video.entity.ItemList;
 import com.cui.video.presenter.iml.FeaturedFragmentPresenter;
 import com.cui.video.ui.activity.FeaturedDeatilActivity;
 import com.cui.video.ui.activity.SearchFeaturedActivity;
@@ -30,7 +27,7 @@ import cn.iwgang.familiarrecyclerview.FamiliarRecyclerView;
 public class FeaturedFrament extends AbstractBaseFragment<FeaturedFragmentBinding, FeaturedFragmentPresenter>
         implements FeaturedFragmentContract.FeaturedFragmentView, OnLoadMoreListener, FamiliarRecyclerView.OnItemClickListener, OnRefreshListener {
     private FeaturedAdapter adapter;
-    private String dateTime;
+    private String dateTime = "";
     private List<ItemList> items = new ArrayList<>();
     public static final String FEATURED_DETAIL_ENTITY = "detail_entity";
     public static final String PX = "px";
@@ -99,17 +96,19 @@ public class FeaturedFrament extends AbstractBaseFragment<FeaturedFragmentBindin
 
     @Override
     public void getFeaturedListMoreData(FeturedListEntity entity) {
-        if (binding.include.swipeTarget.page == 1) {
-            entity.issueList.get(1).itemList.remove(0);
-            items.addAll(entity.issueList.get(0).itemList);
-            items.addAll(entity.issueList.get(1).itemList);
-            adapter.setNewData(items);
-        } else {
-            entity.issueList.get(0).itemList.remove(0);
-            entity.issueList.get(1).itemList.remove(0);
-            items.addAll(entity.issueList.get(0).itemList);
-            items.addAll(entity.issueList.get(1).itemList);
-            adapter.notifyDataSetChanged();
+        if (entity.issueList.size() > 0) {
+            if (binding.include.swipeTarget.page == 1) {
+                entity.issueList.get(1).itemList.remove(0);
+                items.addAll(entity.issueList.get(0).itemList);
+                items.addAll(entity.issueList.get(1).itemList);
+                adapter.setNewData(items);
+            } else {
+                entity.issueList.get(0).itemList.remove(0);
+                entity.issueList.get(1).itemList.remove(0);
+                items.addAll(entity.issueList.get(0).itemList);
+                items.addAll(entity.issueList.get(1).itemList);
+                adapter.notifyDataSetChanged();
+            }
         }
         setDateTime(entity);
         binding.include.swipeTarget.refresComplete();

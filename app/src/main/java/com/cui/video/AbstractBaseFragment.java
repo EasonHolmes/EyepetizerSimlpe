@@ -79,6 +79,11 @@ public abstract class AbstractBaseFragment<B extends ViewDataBinding, T extends 
         return initToolbar(v, getResources().getString(titleResourceId));
 
     }
+    protected void setViewsClickListener(View... views) {
+        for (View view : views) {
+            view.setOnClickListener(this);
+        }
+    }
 
     protected TextView initToolbar(View v, String title) {
         mToolbar = (Toolbar) v.findViewById(R.id.mToolBar);

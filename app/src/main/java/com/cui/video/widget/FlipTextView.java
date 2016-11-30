@@ -78,7 +78,8 @@ public class FlipTextView extends TextView {
                 hand.sendEmptyMessage(0);
                 index++;
             } else {
-                timer.cancel();
+                if (timer != null)
+                    timer.cancel();
             }
         }
     }
