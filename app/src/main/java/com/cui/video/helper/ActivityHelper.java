@@ -215,7 +215,7 @@ public final class ActivityHelper {
         });
     }
 
-    public final void ErrordialogMessageByMine(final String message) {
+    public final void errordialogMessageByMine(final String message) {
         dismissSimpleLoadDialog();
         if (StringUtils.isEmpty(message) || !BuildConfig.DEBUG) return;
         mHandler.post(() -> {

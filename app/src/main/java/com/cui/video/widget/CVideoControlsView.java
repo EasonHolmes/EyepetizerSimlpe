@@ -24,27 +24,27 @@ import java.util.List;
  * Created by cuiyang on 2016/11/20.
  */
 
-public class MyVideoControlsView extends VideoControls {
+public class CVideoControlsView extends VideoControls {
     protected SeekBar seekBar;
     //    protected LinearLayout extraViewsContainer;
     protected FitsSystemWindowRelativeLayout container_root_layout;
     public View RootLayout;
     protected boolean userInteracting = false;
 
-    public MyVideoControlsView(Context context) {
+    public CVideoControlsView(Context context) {
         super(context);
     }
 
-    public MyVideoControlsView(Context context, AttributeSet attrs) {
+    public CVideoControlsView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public MyVideoControlsView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CVideoControlsView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public MyVideoControlsView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public CVideoControlsView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
@@ -90,7 +90,7 @@ public class MyVideoControlsView extends VideoControls {
     @Override
     protected void registerListeners() {
         super.registerListeners();
-        seekBar.setOnSeekBarChangeListener(new MyVideoControlsView.SeekBarChanged());
+        seekBar.setOnSeekBarChangeListener(new CVideoControlsView.SeekBarChanged());
     }
 
     @Override

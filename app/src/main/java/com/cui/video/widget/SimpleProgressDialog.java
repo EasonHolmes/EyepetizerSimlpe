@@ -17,7 +17,6 @@ import com.cui.video.utils.StringUtils;
 public class SimpleProgressDialog extends Dialog {
 
     private static SimpleProgressDialog simpleProgressDialog = null;
-    private static ImageView progressImg;
     private static TextView progressTxt;
 
     public SimpleProgressDialog(Context context) {

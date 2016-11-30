@@ -27,7 +27,6 @@
                 android:id="@+id/mCollapsingToolbarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:fitsSystemWindows="true"
                 app:contentScrim="?attr/colorPrimary"
                 app:expandedTitleMarginEnd="16dp"
                 app:expandedTitleMarginStart="16dp"

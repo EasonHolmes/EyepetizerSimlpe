@@ -68,7 +68,7 @@ public final class StringUtils {
 		return String.valueOf(d);
 	}
 
-	public static String ToDBC(String input) {
+	public static String toDBC(String input) {
 		char[] c = input.toCharArray();
 		for (int i = 0; i < c.length; i++) {
 			if (c[i] == 12288) {

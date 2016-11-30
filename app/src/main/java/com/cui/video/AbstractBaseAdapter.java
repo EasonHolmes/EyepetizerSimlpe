@@ -25,7 +25,6 @@ public abstract class AbstractBaseAdapter<T> extends RecyclerView.Adapter<Recycl
     private DecelerateInterpolator mDecelerateInterpolator = new DecelerateInterpolator(2f);
     private SwipeToLoadLayout refreshLayout;
     private int mDuration = 300;
-    private int mDelay = 30;
     private int mLastPosition = -1;
     private boolean isFirstOnly = true;
     protected final int SCALE_ANIMA = 0;
@@ -106,7 +105,7 @@ public abstract class AbstractBaseAdapter<T> extends RecyclerView.Adapter<Recycl
      * @param anim
      * @param holder
      */
-    protected void OpenAnimation(int anim, RecyclerView.ViewHolder holder) {
+    protected void openAnimation(int anim, RecyclerView.ViewHolder holder) {
         //第一次进入或者没有被显示过的item才会显示动画.否则显示过的就不再次显示为了性能着想
         if (!isFirstOnly || holder.getLayoutPosition() > mLastPosition) {
             switch (anim) {

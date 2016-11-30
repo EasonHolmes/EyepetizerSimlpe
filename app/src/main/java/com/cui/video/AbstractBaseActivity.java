@@ -152,7 +152,7 @@ public abstract class AbstractBaseActivity<B extends ViewDataBinding, T extends 
 
     @Override
     public void refreshError(String error) {
-
+        getActivityHelper().errordialogMessageByMine(error);
     }
 
     @Override

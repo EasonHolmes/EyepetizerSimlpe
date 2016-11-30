@@ -102,6 +102,6 @@ public abstract class AbstractBaseFragment<B extends ViewDataBinding, T extends 
 
     @Override
     public void refreshError(String error) {
-
+        activity.getActivityHelper().errordialogMessageByMine(error);
     }
 }

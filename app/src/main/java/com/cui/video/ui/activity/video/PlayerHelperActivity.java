@@ -9,13 +9,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.cui.video.AbstractBaseActivity;
 import com.cui.video.R;
 import com.cui.video.entity.PlayerVideoEntity;
 import com.cui.video.manager.VideoApi;
-import com.cui.video.presenter.AbstractBasePresenter;
-import com.cui.video.presenter.iml.PlayerHelperPresenter;
-import com.cui.video.widget.MyVideoControlsView;
+import com.cui.video.widget.CVideoControlsView;
 import com.devbrackets.android.exomedia.listener.VideoControlsVisibilityListener;
 import com.devbrackets.android.exomedia.ui.widget.EMVideoView;
 import com.devbrackets.android.exomedia.ui.widget.VideoControls;
@@ -27,12 +24,12 @@ import com.devbrackets.android.exomedia.ui.widget.VideoControls;
 public class PlayerHelperActivity extends AppCompatActivity {
     protected EMVideoView emVideoView;
     protected PlayerVideoEntity playerEntity;
-    private MyVideoControlsView videoControls;
+    private CVideoControlsView videoControls;
     public static final String PLAYER_ENTITY = "player_entity";
     protected boolean pausedInOnStop = false;
     protected VideoApi mVideoApi;
     private FullScreenListener fullScreenListener;
-    public MyVideoControlsView myVideoControlsView;
+    public CVideoControlsView cVideoControlsView;
     protected TextView txt_title;
 
     @Override
@@ -46,13 +43,13 @@ public class PlayerHelperActivity extends AppCompatActivity {
         playerEntity = (PlayerVideoEntity) getIntent().getSerializableExtra(PLAYER_ENTITY);
 
         emVideoView = (EMVideoView) findViewById(R.id.video_play_activity_video_view);
-        myVideoControlsView = new MyVideoControlsView(this);
-        emVideoView.setControls(myVideoControlsView);
-        txt_title = (TextView) myVideoControlsView.RootLayout.findViewById(R.id.exomedia_controls_title);
+        cVideoControlsView = new CVideoControlsView(this);
+        emVideoView.setControls(cVideoControlsView);
+        txt_title = (TextView) cVideoControlsView.RootLayout.findViewById(R.id.exomedia_controls_title);
 
         mVideoApi = new VideoApi(emVideoView);
 
-        videoControls = (MyVideoControlsView) emVideoView.getVideoControls();
+        videoControls = (CVideoControlsView) emVideoView.getVideoControls();
 
         if (videoControls != null) {
             videoControls.setVisibilityListener(new ControlsVisibilityListener());

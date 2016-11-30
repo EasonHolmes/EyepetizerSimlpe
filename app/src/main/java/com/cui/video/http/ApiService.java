@@ -3,6 +3,7 @@ package com.cui.video.http;
 
 import com.cui.video.entity.ClasssDetailEntity;
 import com.cui.video.entity.FindListEntity;
+import com.cui.video.entity.RankListEntity;
 import com.cui.video.entity.SearchFeaturedListEntity;
 import com.cui.video.entity.FeturedListEntity;
 
@@ -68,4 +69,7 @@ public interface ApiService {
     Observable<ClasssDetailEntity> getClasssDeatilList(
             @Query("start") int start, @Query("categoryId") int categoryId,
             @Query("strategy") String strategy);
+
+    @GET("v3/ranklist?num=10")
+    Observable<RankListEntity> getRankList(@Query("strategy") String strategy);
 }

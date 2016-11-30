@@ -39,6 +39,7 @@ public class ClasssDetailActivity extends AbstractBaseActivity<ClasssDetailActBi
         toolbarTitle = getIntent().getStringExtra(FindListFragment.CATEGORYNAME);
         super.initToolbar(toolbarTitle, true);
 
+        //设置toolbar透明这样就能充满顶部看起来更好些
         mToolbar.setBackgroundColor(getResources().getColor(R.color.transtions_color));
 
         binding.mCollapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.black));

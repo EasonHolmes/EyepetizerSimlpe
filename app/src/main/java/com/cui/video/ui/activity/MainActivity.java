@@ -1,4 +1,4 @@
-package com.cui.video.ui;
+package com.cui.video.ui.activity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -55,7 +55,6 @@ public class MainActivity extends AbstractBaseActivity<MainActBinding, MainActiv
         return default_drawable = new Drawable[]{
                 getResources().getDrawable(R.drawable.ic_tab_strip_icon_feed),
                 getResources().getDrawable(R.drawable.ic_tab_strip_icon_category)};
-//                getResources().getDrawable(R.drawable.ic_tab_strip_icon_pgc)};
     }
 
     /**
@@ -67,7 +66,6 @@ public class MainActivity extends AbstractBaseActivity<MainActBinding, MainActiv
         return select_drawable = new Drawable[]{
                 getResources().getDrawable(R.drawable.ic_tab_strip_icon_feed_selected),
                 getResources().getDrawable(R.drawable.ic_tab_strip_icon_category_selected)};
-//                getResources().getDrawable(R.drawable.ic_tab_strip_icon_pgc_selected)};
     }
 
     /**
@@ -78,7 +76,6 @@ public class MainActivity extends AbstractBaseActivity<MainActBinding, MainActiv
     private TextView[] getChange_Bottom_TextViews() {
         return textViews = new TextView[]{binding.include.tabbar1Text,
                 binding.include.tabbar2Text};
-//                binding.include.tabbar4Text};
     }
 
     /**

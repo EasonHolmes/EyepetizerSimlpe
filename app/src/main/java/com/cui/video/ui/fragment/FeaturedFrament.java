@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
@@ -72,7 +73,7 @@ public class FeaturedFrament extends AbstractBaseFragment<FeaturedFragmentBindin
 
     @Override
     public void onLoadMore() {
-        presenter.getFeaturedListMoreData(binding.include.swipeTarget.getPage(false), Long.decode(dateTime));
+        presenter.getFeaturedListMoreData(binding.include.swipeTarget.getPage(false), TextUtils.isEmpty(dateTime)?0:Long.decode(dateTime));
     }
 
     @Override

@@ -13,6 +13,7 @@ import com.cui.video.databinding.FindFragmentBinding;
 import com.cui.video.entity.ItemList;
 import com.cui.video.presenter.iml.FindListPresenter;
 import com.cui.video.ui.activity.ClasssDetailActivity;
+import com.cui.video.ui.activity.RankActivity;
 import com.cui.video.view.iml.FindListContract;
 import com.cui.video.widget.SpaceGridItemDecoration;
 
@@ -70,7 +71,7 @@ public class FindListFragment extends AbstractBaseFragment<FindFragmentBinding, 
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.img_item:
-
+                startActivity(new Intent(activity, RankActivity.class));
                 break;
         }
     }
