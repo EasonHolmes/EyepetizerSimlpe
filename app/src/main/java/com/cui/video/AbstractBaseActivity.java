@@ -30,7 +30,7 @@ import rx.Subscription;
  * Created by cuiyang on 2016/11/20.
  */
 
-public abstract class AbstractBaseActivity<B extends ViewDataBinding, T extends AbstractBasePresenter> extends SwipeActivity
+public abstract class AbstractBaseActivity<B extends ViewDataBinding, T extends AbstractBasePresenter> extends RxAppCompatActivity
         implements View.OnClickListener, BaseContract.BaseView {
 
     protected Toolbar mToolbar;
@@ -108,7 +108,7 @@ public abstract class AbstractBaseActivity<B extends ViewDataBinding, T extends 
         mToolbar.setTitle(titleStr);
         setSupportActionBar(mToolbar);
         if (isNeedBack) {
-            setSwipeEnabled(true);
+//            setSwipeEnabled(false);
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }

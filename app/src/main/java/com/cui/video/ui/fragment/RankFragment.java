@@ -1,33 +1,20 @@
 package com.cui.video.ui.fragment;
 
-import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
-import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.cui.video.AbstractBaseFragment;
 import com.cui.video.R;
 import com.cui.video.adapter.FeaturedAdapter;
 import com.cui.video.databinding.FrankFragmentBinding;
-import com.cui.video.entity.FeturedListEntity;
-import com.cui.video.entity.ItemList;
 import com.cui.video.entity.RankListEntity;
-import com.cui.video.presenter.iml.FeaturedFragmentPresenter;
 import com.cui.video.presenter.iml.RankFragmentPresenter;
-import com.cui.video.ui.activity.FeaturedDeatilActivity;
+import com.cui.video.ui.activity.VideoDeatilActivity;
 import com.cui.video.ui.activity.SearchFeaturedActivity;
-import com.cui.video.view.iml.FeaturedFragmentContract;
 import com.cui.video.view.iml.RankFragmnetContract;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import cn.iwgang.familiarrecyclerview.FamiliarRecyclerView;
 
@@ -92,7 +79,7 @@ public class RankFragment extends AbstractBaseFragment<FrankFragmentBinding, Ran
     @Override
     public void onItemClick(FamiliarRecyclerView familiarRecyclerView, View view, int position) {
         Intent i = new Intent();
-        i.setClass(activity, FeaturedDeatilActivity.class);
+        i.setClass(activity, VideoDeatilActivity.class);
         i.putExtra(FEATURED_DETAIL_ENTITY, adapter.getItem(position));
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             ActivityOptions activityOptionsCompat =

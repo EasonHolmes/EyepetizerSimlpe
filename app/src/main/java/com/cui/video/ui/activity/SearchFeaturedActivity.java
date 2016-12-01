@@ -151,7 +151,7 @@ public class SearchFeaturedActivity extends AbstractBaseActivity<SearchFeaturedA
     @Override
     public void onItemClick(FamiliarRecyclerView familiarRecyclerView, View view, int position) {
         Intent i = new Intent();
-        i.setClass(this, FeaturedDeatilActivity.class);
+        i.setClass(this, VideoDeatilActivity.class);
         i.putExtra(FEATURED_DETAIL_ENTITY, adapter.getItem(position));
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             ActivityOptions activityOptionsCompat =

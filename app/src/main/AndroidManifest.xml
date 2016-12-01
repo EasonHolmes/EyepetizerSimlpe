@@ -25,7 +25,7 @@
 
 
         <activity
-            android:name=".ui.activity.FeaturedDeatilActivity"
+            android:name=".ui.activity.VideoDeatilActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"/>
         <activity

@@ -37,6 +37,7 @@
             android:layout_alignParentTop="true"
             android:minHeight="390dp"
             android:scaleType="centerCrop"
+            android:src="@drawable/fab_bg_mini"
             android:transitionName="@string/featured_item_share_txt"
             tools:ignore="UnusedAttribute"/>
 

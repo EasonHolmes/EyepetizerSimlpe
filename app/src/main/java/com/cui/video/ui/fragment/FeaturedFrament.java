@@ -9,6 +9,8 @@ import android.view.View;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.FutureTarget;
 import com.cui.video.AbstractBaseFragment;
 import com.cui.video.R;
 import com.cui.video.adapter.FeaturedAdapter;
@@ -16,14 +18,18 @@ import com.cui.video.databinding.FeaturedFragmentBinding;
 import com.cui.video.entity.FeturedListEntity;
 import com.cui.video.entity.ItemList;
 import com.cui.video.presenter.iml.FeaturedFragmentPresenter;
-import com.cui.video.ui.activity.FeaturedDeatilActivity;
+import com.cui.video.ui.activity.VideoDeatilActivity;
 import com.cui.video.ui.activity.SearchFeaturedActivity;
 import com.cui.video.view.iml.FeaturedFragmentContract;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import cn.iwgang.familiarrecyclerview.FamiliarRecyclerView;
+
+import static com.bumptech.glide.Glide.with;
 
 public class FeaturedFrament extends AbstractBaseFragment<FeaturedFragmentBinding, FeaturedFragmentPresenter>
         implements FeaturedFragmentContract.FeaturedFragmentView, OnLoadMoreListener, FamiliarRecyclerView.OnItemClickListener, OnRefreshListener {
@@ -79,7 +85,7 @@ public class FeaturedFrament extends AbstractBaseFragment<FeaturedFragmentBindin
     @Override
     public void onItemClick(FamiliarRecyclerView familiarRecyclerView, View view, int position) {
         Intent i = new Intent();
-        i.setClass(activity, FeaturedDeatilActivity.class);
+        i.setClass(activity, VideoDeatilActivity.class);
         i.putExtra(FEATURED_DETAIL_ENTITY, adapter.getItem(position));
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             ActivityOptions activityOptionsCompat =

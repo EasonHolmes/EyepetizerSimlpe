@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.cui.video.AbstractBaseActivity;
@@ -16,16 +17,16 @@ import com.cui.video.R;
 import com.cui.video.databinding.FeturedDetailActBinding;
 import com.cui.video.entity.PlayerVideoEntity;
 import com.cui.video.entity.ItemList;
-import com.cui.video.presenter.iml.FeaturedDetailPresenter;
+import com.cui.video.presenter.iml.VideoDetailPresenter;
 import com.cui.video.ui.activity.video.PlayerHelperActivity;
 import com.cui.video.ui.fragment.FeaturedFrament;
 import com.cui.video.utils.TimeUtils;
 import com.cui.video.utils.img.ImageLoaderDisplay;
 import com.cui.video.ui.activity.video.PlayerVideoActivity;
-import com.cui.video.view.iml.FeaturedDetailContract;
+import com.cui.video.view.iml.VideoDetailContract;
 
-public class FeaturedDeatilActivity extends AbstractBaseActivity<FeturedDetailActBinding, FeaturedDetailPresenter>
-        implements FeaturedDetailContract.FeaturedDetailView {
+public class VideoDeatilActivity extends AbstractBaseActivity<FeturedDetailActBinding, VideoDetailPresenter>
+        implements VideoDetailContract.VideoDetailView {
     private ItemList item;
     private final int Fliptxt_duration = 500;
 
@@ -34,8 +35,9 @@ public class FeaturedDeatilActivity extends AbstractBaseActivity<FeturedDetailAc
         super.setFLAG_TRANSLUCENT_STATUS();
         super.setBindingTranstionAnim();
         item = getIntent().getParcelableExtra(FeaturedFrament.FEATURED_DETAIL_ENTITY);
+
         Glide.with(this)
-                .load(item.data.cover.detail)
+                .load(item.data.cover.feed)
                 .asBitmap()
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
@@ -44,9 +46,10 @@ public class FeaturedDeatilActivity extends AbstractBaseActivity<FeturedDetailAc
                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                         binding.imgViewpageBackground.setImageBitmap(resource);
                         startLollipopAnim();
+
                     }
                 });
-        ImageLoaderDisplay.imageLoader(FeaturedDeatilActivity.this, binding.imgBackground, item.data.cover.blurred);
+        ImageLoaderDisplay.imageLoader(VideoDeatilActivity.this, binding.imgBackground, item.data.cover.blurred);
         super.setViewsClickListener(binding.imgBack, binding.imgViewpageBackground, binding.imgPlay);
     }
 
@@ -64,8 +67,8 @@ public class FeaturedDeatilActivity extends AbstractBaseActivity<FeturedDetailAc
      * 初始化P层类
      */
     @Override
-    protected FeaturedDetailPresenter initPresenter() {
-        return new FeaturedDetailPresenter(this);
+    protected VideoDetailPresenter initPresenter() {
+        return new VideoDetailPresenter(this);
     }
 
     /**
@@ -78,9 +81,9 @@ public class FeaturedDeatilActivity extends AbstractBaseActivity<FeturedDetailAc
 
     @Override
     public void onBackPressed() {
-        supportFinishAfterTransition();
         binding.txtDesc.cancle();
         Glide.get(this).clearMemory();
+        supportFinishAfterTransition();
         super.onBackPressed();
     }
 
