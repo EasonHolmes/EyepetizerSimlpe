@@ -3,6 +3,7 @@ package com.cui.video.ui.fragment;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -19,8 +20,6 @@ import com.cui.video.view.iml.RankFragmnetContract;
 import cn.iwgang.familiarrecyclerview.FamiliarRecyclerView;
 
 import static com.cui.video.ui.fragment.FeaturedFrament.FEATURED_DETAIL_ENTITY;
-import static com.cui.video.ui.fragment.FeaturedFrament.PX;
-import static com.cui.video.ui.fragment.FeaturedFrament.PY;
 
 /**
  * Created by cuiyang on 2016/11/30.
@@ -81,18 +80,9 @@ public class RankFragment extends AbstractBaseFragment<FrankFragmentBinding, Ran
         Intent i = new Intent();
         i.setClass(activity, VideoDeatilActivity.class);
         i.putExtra(FEATURED_DETAIL_ENTITY, adapter.getItem(position));
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            ActivityOptions activityOptionsCompat =
-                    ActivityOptions.makeSceneTransitionAnimation(activity, view, getResources().getString(R.string.featured_item_share_txt));
+            ActivityOptionsCompat activityOptionsCompat =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(activity, view, getResources().getString(R.string.featured_item_share_txt));
             activity.startActivity(i, activityOptionsCompat.toBundle());
-        } else {
-            float x = view.getX();
-            float y = view.getY();
-            i.putExtra(PX, x);
-            i.putExtra(PY, y);
-            activity.startActivity(i);
-            activity.overridePendingTransition(0, 0);
-        }
     }
 
     @Override

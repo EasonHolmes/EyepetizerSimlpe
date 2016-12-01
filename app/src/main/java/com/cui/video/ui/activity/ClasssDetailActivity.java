@@ -3,6 +3,7 @@ package com.cui.video.ui.activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +16,6 @@ import com.cui.video.adapter.FeaturedAdapter;
 import com.cui.video.databinding.ClasssDetailActBinding;
 import com.cui.video.entity.ClasssDetailEntity;
 import com.cui.video.presenter.iml.ClasssDetailPresenter;
-import com.cui.video.ui.fragment.FeaturedFrament;
 import com.cui.video.ui.fragment.FindListFragment;
 import com.cui.video.utils.img.ImageLoaderDisplay;
 import com.cui.video.view.iml.ClasssDetailContract;
@@ -94,18 +94,9 @@ public class ClasssDetailActivity extends AbstractBaseActivity<ClasssDetailActBi
         Intent i = new Intent();
         i.setClass(this, VideoDeatilActivity.class);
         i.putExtra(FEATURED_DETAIL_ENTITY, adapter.getItem(position));
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            ActivityOptions activityOptionsCompat =
-                    ActivityOptions.makeSceneTransitionAnimation(this, view, getResources().getString(R.string.featured_item_share_txt));
+            ActivityOptionsCompat activityOptionsCompat =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(this, view, getResources().getString(R.string.featured_item_share_txt));
             startActivity(i, activityOptionsCompat.toBundle());
-        } else {
-            float x = view.getX();
-            float y = view.getY();
-            i.putExtra(FeaturedFrament.PX, x);
-            i.putExtra(FeaturedFrament.PY, y);
-            startActivity(i);
-            overridePendingTransition(0, 0);
-        }
     }
 
     @Override

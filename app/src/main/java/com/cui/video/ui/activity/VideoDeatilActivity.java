@@ -9,12 +9,11 @@ import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.cui.video.AbstractBaseActivity;
 import com.cui.video.R;
-import com.cui.video.databinding.FeturedDetailActBinding;
+import com.cui.video.databinding.VideoDetailActBinding;
 import com.cui.video.entity.PlayerVideoEntity;
 import com.cui.video.entity.ItemList;
 import com.cui.video.presenter.iml.VideoDetailPresenter;
@@ -24,8 +23,9 @@ import com.cui.video.utils.TimeUtils;
 import com.cui.video.utils.img.ImageLoaderDisplay;
 import com.cui.video.ui.activity.video.PlayerVideoActivity;
 import com.cui.video.view.iml.VideoDetailContract;
+import com.cui.video.widget.imagetransitionlibrary.ImageTransitionUtil;
 
-public class VideoDeatilActivity extends AbstractBaseActivity<FeturedDetailActBinding, VideoDetailPresenter>
+public class VideoDeatilActivity extends AbstractBaseActivity<VideoDetailActBinding, VideoDetailPresenter>
         implements VideoDetailContract.VideoDetailView {
     private ItemList item;
     private final int Fliptxt_duration = 500;
@@ -36,31 +36,17 @@ public class VideoDeatilActivity extends AbstractBaseActivity<FeturedDetailActBi
         super.setBindingTranstionAnim();
         item = getIntent().getParcelableExtra(FeaturedFrament.FEATURED_DETAIL_ENTITY);
 
-        Glide.with(this)
-                .load(item.data.cover.feed)
-                .asBitmap()
-                .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .into(new SimpleTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                        binding.imgViewpageBackground.setImageBitmap(resource);
-                        startLollipopAnim();
-
-                    }
-                });
+        ImageLoaderDisplay.imageLoaderCallback(this, binding.imgViewpageBackground, item.data.cover.feed, new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                binding.imgViewpageBackground.setImageBitmap(resource);
+                binding.txtTitle.setText(item.data.title);
+                binding.txtSubtitle.setText("#" + item.data.category + "   /   " + TimeUtils.secToTime(item.data.duration));
+                binding.txtDesc.setFlipText(item.data.description, Fliptxt_duration);
+            }
+        });
         ImageLoaderDisplay.imageLoader(VideoDeatilActivity.this, binding.imgBackground, item.data.cover.blurred);
         super.setViewsClickListener(binding.imgBack, binding.imgViewpageBackground, binding.imgPlay);
-    }
-
-    private void startLollipopAnim() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            //方式一使用系统的 需要img_share.getTransitionName()系统来定位是哪两个view
-            ViewCompat.setTransitionName(binding.imgViewpageBackground, getResources().getString(R.string.featured_item_share_txt));
-        }
-        binding.txtTitle.setText(item.data.title);
-        binding.txtSubtitle.setText("#" + item.data.category + "   /   " + TimeUtils.secToTime(item.data.duration));
-        binding.txtDesc.setFlipText(item.data.description, Fliptxt_duration);
     }
 
     /**
@@ -76,7 +62,7 @@ public class VideoDeatilActivity extends AbstractBaseActivity<FeturedDetailActBi
      */
     @Override
     protected int setDataBindingContentViewId() {
-        return R.layout.fetured_detail_act;
+        return R.layout.video_detail_act;
     }
 
     @Override

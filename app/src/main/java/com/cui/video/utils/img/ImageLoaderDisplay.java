@@ -1,6 +1,7 @@
 package com.cui.video.utils.img;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableRequestBuilder;
@@ -9,6 +10,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 
 import java.io.File;
@@ -27,8 +29,8 @@ public class ImageLoaderDisplay {
     public static DrawableRequestBuilder getGlide(Context mContext, String imgUrl) {
         return Glide.with(mContext)
                 .load(imgUrl)
-                .diskCacheStrategy(DiskCacheStrategy.RESULT);
-//                .skipMemoryCache(true);//跳过内存缓存使用磁盘缓存默认false
+                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .skipMemoryCache(true);//跳过内存缓存使用磁盘缓存默认false
 
     }
 
@@ -85,6 +87,14 @@ public class ImageLoaderDisplay {
 
     }
 
+    public static void imageLoaderCallback(Context mContext, ImageView img, String imgUrl, SimpleTarget<Bitmap> simpleTarget) {
+        getGlide(mContext, imgUrl)
+                .crossFade()
+                .centerCrop()
+                .into(simpleTarget);
+
+    }
+
     /**
      * 加载圆角矩形
      * diskCacheStrategy() 磁盘缓存策略，Glide支持很多种图片缓存策略。
@@ -103,7 +113,6 @@ public class ImageLoaderDisplay {
         getGlide(mContext, imgUrl)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .skipMemoryCache(true)//跳过内存缓存使用磁盘缓存默认false
                 .placeholder(default_list_image)
 //                .thumbnail(0.5f)//缩略图0.5f即50%原图的大小
                 .bitmapTransform(new CenterCrop(mContext), new RoundedCornersTransformation(mContext, 30, 0,

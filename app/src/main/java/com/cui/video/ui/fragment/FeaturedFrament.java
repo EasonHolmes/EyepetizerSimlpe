@@ -3,6 +3,7 @@ package com.cui.video.ui.fragment;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
@@ -37,8 +38,6 @@ public class FeaturedFrament extends AbstractBaseFragment<FeaturedFragmentBindin
     private String dateTime = "";
     private List<ItemList> items = new ArrayList<>();
     public static final String FEATURED_DETAIL_ENTITY = "detail_entity";
-    public static final String PX = "px";
-    public static final String PY = "py";
 
     @Override
     protected void onFragmentViewCreated(View view, Bundle savedInstanceState) {
@@ -87,18 +86,18 @@ public class FeaturedFrament extends AbstractBaseFragment<FeaturedFragmentBindin
         Intent i = new Intent();
         i.setClass(activity, VideoDeatilActivity.class);
         i.putExtra(FEATURED_DETAIL_ENTITY, adapter.getItem(position));
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            ActivityOptions activityOptionsCompat =
-                    ActivityOptions.makeSceneTransitionAnimation(activity, view, getResources().getString(R.string.featured_item_share_txt));
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            ActivityOptionsCompat activityOptionsCompat =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(activity, view, getResources().getString(R.string.featured_item_share_txt));
             activity.startActivity(i, activityOptionsCompat.toBundle());
-        } else {
-            float x = view.getX();
-            float y = view.getY();
-            i.putExtra(PX, x);
-            i.putExtra(PY, y);
-            activity.startActivity(i);
-            activity.overridePendingTransition(0, 0);
-        }
+//        } else {
+//            float x = view.getX();
+//            float y = view.getY();
+//            i.putExtra(PX, x);
+//            i.putExtra(PY, y);
+//            activity.startActivity(i);
+//            activity.overridePendingTransition(0, 0);
+//        }
     }
 
     @Override

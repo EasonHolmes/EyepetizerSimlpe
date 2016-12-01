@@ -6,6 +6,7 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SearchView;
 import android.view.View;
@@ -153,18 +154,9 @@ public class SearchFeaturedActivity extends AbstractBaseActivity<SearchFeaturedA
         Intent i = new Intent();
         i.setClass(this, VideoDeatilActivity.class);
         i.putExtra(FEATURED_DETAIL_ENTITY, adapter.getItem(position));
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            ActivityOptions activityOptionsCompat =
-                    ActivityOptions.makeSceneTransitionAnimation(this, view, getResources().getString(R.string.featured_item_share_txt));
+            ActivityOptionsCompat activityOptionsCompat =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(this, view, getResources().getString(R.string.featured_item_share_txt));
             startActivity(i, activityOptionsCompat.toBundle());
-        } else {
-            float x = view.getX();
-            float y = view.getY();
-            i.putExtra(FeaturedFrament.PX, x);
-            i.putExtra(FeaturedFrament.PY, y);
-            startActivity(i);
-            overridePendingTransition(0, 0);
-        }
     }
 
     @Override
