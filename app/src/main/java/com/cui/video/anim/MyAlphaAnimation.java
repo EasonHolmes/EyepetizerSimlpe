@@ -25,26 +25,12 @@ public class MyAlphaAnimation extends AnimationSet {
         this.toVisible = toVisible;
         this.animationView = view;
 
-        //Creates the Alpha animation for the transition
         float startAlpha = toVisible ? 0 : 1;
         float endAlpha = toVisible ? 1 : 0;
 
         android.view.animation.AlphaAnimation alphaAnimation = new android.view.animation.AlphaAnimation(startAlpha, endAlpha);
         alphaAnimation.setDuration(duration);
-
-
-        //Creates the Translate animation for the transition
-        int startY = toVisible ? getHideShowDelta(view) : 0;
-        int endY = toVisible ? 0 : getHideShowDelta(view);
-//        android.view.animation.AlphaAnimation translateAnimation = new android.view.animation.AlphaAnimation(0,255);
-//        translateAnimation.setInterpolator(toVisible ? new LinearOutSlowInInterpolator() : new FastOutLinearInInterpolator());
-//        translateAnimation.setDuration(duration);
-
-
-        //Adds the animations to the set
         addAnimation(alphaAnimation);
-//        addAnimation(translateAnimation);
-
         setAnimationListener(new Listener());
     }
 

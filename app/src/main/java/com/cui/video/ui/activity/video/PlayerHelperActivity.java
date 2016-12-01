@@ -17,6 +17,8 @@ import com.devbrackets.android.exomedia.listener.VideoControlsVisibilityListener
 import com.devbrackets.android.exomedia.ui.widget.EMVideoView;
 import com.devbrackets.android.exomedia.ui.widget.VideoControls;
 
+import static com.cui.video.R.id.txt_title;
+
 /**
  * Created by cuiyang on 2016/11/20.
  */
@@ -24,13 +26,10 @@ import com.devbrackets.android.exomedia.ui.widget.VideoControls;
 public class PlayerHelperActivity extends AppCompatActivity {
     protected EMVideoView emVideoView;
     protected PlayerVideoEntity playerEntity;
-    private CVideoControlsView videoControls;
     public static final String PLAYER_ENTITY = "player_entity";
     protected boolean pausedInOnStop = false;
     protected VideoApi mVideoApi;
     private FullScreenListener fullScreenListener;
-    public CVideoControlsView cVideoControlsView;
-    protected TextView txt_title;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,19 +42,13 @@ public class PlayerHelperActivity extends AppCompatActivity {
         playerEntity = (PlayerVideoEntity) getIntent().getSerializableExtra(PLAYER_ENTITY);
 
         emVideoView = (EMVideoView) findViewById(R.id.video_play_activity_video_view);
-        cVideoControlsView = new CVideoControlsView(this);
-        emVideoView.setControls(cVideoControlsView);
-        txt_title = (TextView) cVideoControlsView.RootLayout.findViewById(R.id.exomedia_controls_title);
-
         mVideoApi = new VideoApi(emVideoView);
 
-        videoControls = (CVideoControlsView) emVideoView.getVideoControls();
-
-        if (videoControls != null) {
-            videoControls.setVisibilityListener(new ControlsVisibilityListener());
+        if (emVideoView.getVideoControls() != null) {
+            emVideoView.getVideoControls().setVisibilityListener(new ControlsVisibilityListener());
         }
-        fullScreenListener = new FullScreenListener();
 
+        fullScreenListener = new FullScreenListener();
 
         goFullscreen();
 
@@ -164,7 +157,7 @@ public class PlayerHelperActivity extends AppCompatActivity {
      * A Listener for the {@link VideoControls}
      * so that we can re-enter fullscreen mode when the controls are hidden.
      */
-    private class ControlsVisibilityListener implements VideoControlsVisibilityListener {
+    protected class ControlsVisibilityListener implements VideoControlsVisibilityListener {
         @Override
         public void onControlsShown() {
             // No additional functionality performed

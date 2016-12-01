@@ -152,6 +152,7 @@ public class CVideoControlsView extends VideoControls {
         if (!isLoading) {
             //从下向上的动画
 //            controlsContainer.startAnimation(new BottomViewHideShowAnimation(controlsContainer, toVisible, CONTROL_VISIBILITY_ANIMATION_LENGTH));//从下到上的动画
+            //渐入渐出动画
             container_root_layout.startAnimation(new MyAlphaAnimation(container_root_layout, toVisible, CONTROL_VISIBILITY_ANIMATION_LENGTH));
         }
 

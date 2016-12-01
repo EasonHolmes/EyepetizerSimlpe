@@ -26,7 +26,7 @@ public class ImageLoaderDisplay {
     /**
      * 通用基础设置
      */
-    public static DrawableRequestBuilder getGlide(Context mContext, String imgUrl) {
+    private static DrawableRequestBuilder getGlide(Context mContext, String imgUrl) {
         return Glide.with(mContext)
                 .load(imgUrl)
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
@@ -60,10 +60,11 @@ public class ImageLoaderDisplay {
     public static void imageLoaderOverride800(Context mContext, ImageView img, String imgUrl) {
         getGlide(mContext, imgUrl)
                 .centerCrop()
-                .override(800,400)
+                .override(800, 400)
                 .crossFade()
                 .into(img);
     }
+
     /**
      * 直接加载图片
      *
@@ -88,10 +89,13 @@ public class ImageLoaderDisplay {
     }
 
     public static void imageLoaderCallback(Context mContext, ImageView img, String imgUrl, SimpleTarget<Bitmap> simpleTarget) {
-        getGlide(mContext, imgUrl)
-                .crossFade()
-                .centerCrop()
+        Glide.with(mContext)
+                .load(imgUrl)
+                .asBitmap()
+                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .skipMemoryCache(true)//跳过内存缓存使用磁盘缓存默认false
                 .into(simpleTarget);
+
 
     }
 

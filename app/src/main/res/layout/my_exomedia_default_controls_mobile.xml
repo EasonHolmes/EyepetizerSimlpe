@@ -27,7 +27,6 @@
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:visibility="gone"
             tools:text="The Video Title"/>
 
         <TextView
@@ -36,7 +35,6 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:textSize="14sp"
-            android:visibility="gone"
             tools:text="The Video Album"/>
 
         <TextView
@@ -44,7 +42,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
-            android:visibility="gone"
             android:textSize="14sp"
             tools:text="The Video Artist"/>
     </LinearLayout>
