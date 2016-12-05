@@ -29,13 +29,13 @@ public class VideoDeatilActivity extends AbstractBaseActivity<VideoDetailActBind
         implements VideoDetailContract.VideoDetailView {
     private ItemList item;
     private final int Fliptxt_duration = 500;
-
+    private PlayerVideoEntity playerVideoEntity;
     @Override
     protected void onCreated(Bundle savedInstanceState) {
         super.setFLAG_TRANSLUCENT_STATUS();
         super.setBindingTranstionAnim();
-        item = getIntent().getParcelableExtra(FeaturedFrament.FEATURED_DETAIL_ENTITY);
-
+        playerVideoEntity = (PlayerVideoEntity) getIntent().getParcelableExtra(FeaturedFrament.FEATURED_DETAIL_ENTITY);
+        item = playerVideoEntity.getList().get(0);
         ImageLoaderDisplay.imageLoaderCallback(this, binding.imgViewpageBackground, item.data.cover.feed, new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
@@ -79,11 +79,7 @@ public class VideoDeatilActivity extends AbstractBaseActivity<VideoDetailActBind
             case R.id.img_play:
             case R.id.img_viewpage_background:
                 Intent i = new Intent(this, PlayerVideoActivity.class);
-                PlayerVideoEntity entity = new PlayerVideoEntity();
-                entity.setUrl(item.data.playUrl);
-                entity.setName(item.data.title);
-                entity.setTitle(item.data.title);
-                i.putExtra(PlayerHelperActivity.PLAYER_ENTITY, entity);
+                i.putExtra(PlayerHelperActivity.PLAYER_ENTITY, playerVideoEntity);
                 startActivity(i);
                 break;
             case R.id.img_back:

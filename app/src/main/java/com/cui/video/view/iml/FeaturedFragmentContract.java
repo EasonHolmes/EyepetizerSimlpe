@@ -1,12 +1,15 @@
 package com.cui.video.view.iml;
 
 import com.cui.video.entity.FeturedListEntity;
+import com.cui.video.entity.ItemList;
 import com.cui.video.view.BaseContract;
+
+import java.util.List;
 
 public interface FeaturedFragmentContract {
     interface FeaturedFragmentView extends BaseContract.BaseView {
 
-        void getFeaturedListMoreData(FeturedListEntity entity);
+        void getFeaturedListMoreData(List<ItemList> entity);
 
     }
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.devbrackets.android.exomedia.ui.widget.FitsSystemWindowRelativeLayout
+    android:id="@+id/container_root_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/container_root_layout"
     android:background="@drawable/exomedia_default_controls_interactive_background">
 
     <LinearLayout
@@ -20,14 +20,20 @@
         android:paddingTop="16dp"
         tools:visibility="visible">
 
+
         <TextView
             android:id="@+id/exomedia_controls_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/abc_ic_ab_back_mtrl_am_alpha"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            tools:text="The Video Title"/>
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center|left"
+            tools:text="The Video Title"
+            tools:ignore="RtlHardcoded"/>
+
 
         <TextView
             android:id="@+id/exomedia_controls_sub_title"
@@ -81,8 +87,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:maxHeight="2dp"
+                android:minHeight="2dp"
+                android:progressDrawable="@drawable/seekbar_background"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                tools:ignore="RtlHardcoded"/>
+                tools:ignore="RtlHardcoded"
+                android:thumb="@drawable/seekbar_thumb"/>
 
             <TextView
                 android:id="@+id/exomedia_controls_end_time"
@@ -117,9 +127,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="150dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:minHeight="@dimen/exomedia_min_button_height"
             android:minWidth="@dimen/exomedia_min_button_height"
-            android:background="?attr/selectableItemBackgroundBorderless"
             android:visibility="gone"
             app:srcCompat="@drawable/exomedia_ic_skip_previous_white"
             tools:ignore="ContentDescription,RtlHardcoded"
@@ -155,5 +165,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:progressDrawable="@drawable/seekbar_background"/>
 </com.devbrackets.android.exomedia.ui.widget.FitsSystemWindowRelativeLayout>

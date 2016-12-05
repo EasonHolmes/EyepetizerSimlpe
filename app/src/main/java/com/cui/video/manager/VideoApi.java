@@ -101,7 +101,6 @@ public class VideoApi implements MediaPlayerApi, OnErrorListener, OnPreparedList
 
     @Override
     public void onCompletion() {
-
     }
 
     @Override

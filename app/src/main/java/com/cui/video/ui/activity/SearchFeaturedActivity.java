@@ -19,6 +19,7 @@ import com.cui.video.AbstractBaseActivity;
 import com.cui.video.R;
 import com.cui.video.adapter.FeaturedAdapter;
 import com.cui.video.databinding.SearchFeaturedActBinding;
+import com.cui.video.entity.PlayerVideoEntity;
 import com.cui.video.entity.SearchFeaturedListEntity;
 import com.cui.video.presenter.iml.SearchFeaturedPresenter;
 import com.cui.video.ui.fragment.FeaturedFrament;
@@ -153,10 +154,12 @@ public class SearchFeaturedActivity extends AbstractBaseActivity<SearchFeaturedA
     public void onItemClick(FamiliarRecyclerView familiarRecyclerView, View view, int position) {
         Intent i = new Intent();
         i.setClass(this, VideoDeatilActivity.class);
-        i.putExtra(FEATURED_DETAIL_ENTITY, adapter.getItem(position));
-            ActivityOptionsCompat activityOptionsCompat =
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(this, view, getResources().getString(R.string.featured_item_share_txt));
-            startActivity(i, activityOptionsCompat.toBundle());
+        PlayerVideoEntity playerVideoEntity = new PlayerVideoEntity();
+        playerVideoEntity.setList(adapter.getData().subList(position, adapter.getData().size() - 1));
+        i.putExtra(FEATURED_DETAIL_ENTITY, playerVideoEntity);
+        ActivityOptionsCompat activityOptionsCompat =
+                ActivityOptionsCompat.makeSceneTransitionAnimation(this, view, getResources().getString(R.string.featured_item_share_txt));
+        startActivity(i, activityOptionsCompat.toBundle());
     }
 
     @Override

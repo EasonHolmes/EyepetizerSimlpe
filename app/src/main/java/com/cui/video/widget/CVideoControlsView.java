@@ -8,8 +8,11 @@ import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
+import com.cui.video.AbstractBaseActivity;
 import com.cui.video.R;
 import com.cui.video.anim.MyAlphaAnimation;
 import com.devbrackets.android.exomedia.ui.animation.TopViewHideShowAnimation;
@@ -24,7 +27,7 @@ import java.util.List;
  * Created by cuiyang on 2016/11/20.
  */
 
-public class CVideoControlsView extends VideoControls {
+public class CVideoControlsView extends VideoControls implements View.OnClickListener {
     protected SeekBar seekBar;
     //    protected LinearLayout extraViewsContainer;
     protected FitsSystemWindowRelativeLayout container_root_layout;
@@ -41,11 +44,6 @@ public class CVideoControlsView extends VideoControls {
 
     public CVideoControlsView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public CVideoControlsView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override
@@ -85,12 +83,16 @@ public class CVideoControlsView extends VideoControls {
         seekBar = (SeekBar) findViewById(R.id.exomedia_controls_video_seek);
 //        extraViewsContainer = (LinearLayout) findViewById(R.id.exomedia_controls_extra_container);
         container_root_layout = (FitsSystemWindowRelativeLayout) findViewById(R.id.container_root_layout);
+        container_root_layout.setOnClickListener(this);
     }
 
     @Override
     protected void registerListeners() {
         super.registerListeners();
         seekBar.setOnSeekBarChangeListener(new CVideoControlsView.SeekBarChanged());
+    }
+    public TextView getTitleView(){
+        return super.titleView;
     }
 
     @Override
@@ -200,6 +202,15 @@ public class CVideoControlsView extends VideoControls {
         loadingProgress.setVisibility(View.GONE);
 
         updatePlaybackState(videoView != null && videoView.isPlaying());
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.container_root_layout:
+                hideDelayed(0);
+                break;
+        }
     }
 
     /**

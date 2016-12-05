@@ -15,6 +15,7 @@ import com.cui.video.R;
 import com.cui.video.adapter.FeaturedAdapter;
 import com.cui.video.databinding.ClasssDetailActBinding;
 import com.cui.video.entity.ClasssDetailEntity;
+import com.cui.video.entity.PlayerVideoEntity;
 import com.cui.video.presenter.iml.ClasssDetailPresenter;
 import com.cui.video.ui.fragment.FindListFragment;
 import com.cui.video.utils.img.ImageLoaderDisplay;
@@ -93,7 +94,9 @@ public class ClasssDetailActivity extends AbstractBaseActivity<ClasssDetailActBi
     public void onItemClick(FamiliarRecyclerView familiarRecyclerView, View view, int position) {
         Intent i = new Intent();
         i.setClass(this, VideoDeatilActivity.class);
-        i.putExtra(FEATURED_DETAIL_ENTITY, adapter.getItem(position));
+        PlayerVideoEntity playerVideoEntity = new PlayerVideoEntity();
+        playerVideoEntity.setList(adapter.getData().subList(position, adapter.getData().size() - 1));
+        i.putExtra(FEATURED_DETAIL_ENTITY, playerVideoEntity);
             ActivityOptionsCompat activityOptionsCompat =
                     ActivityOptionsCompat.makeSceneTransitionAnimation(this, view, getResources().getString(R.string.featured_item_share_txt));
             startActivity(i, activityOptionsCompat.toBundle());

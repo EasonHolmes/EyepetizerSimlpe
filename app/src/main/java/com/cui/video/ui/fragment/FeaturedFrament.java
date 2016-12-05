@@ -18,6 +18,7 @@ import com.cui.video.adapter.FeaturedAdapter;
 import com.cui.video.databinding.FeaturedFragmentBinding;
 import com.cui.video.entity.FeturedListEntity;
 import com.cui.video.entity.ItemList;
+import com.cui.video.entity.PlayerVideoEntity;
 import com.cui.video.presenter.iml.FeaturedFragmentPresenter;
 import com.cui.video.ui.activity.VideoDeatilActivity;
 import com.cui.video.ui.activity.SearchFeaturedActivity;
@@ -78,49 +79,48 @@ public class FeaturedFrament extends AbstractBaseFragment<FeaturedFragmentBindin
 
     @Override
     public void onLoadMore() {
-        presenter.getFeaturedListMoreData(binding.include.swipeTarget.getPage(false), TextUtils.isEmpty(dateTime)?0:Long.decode(dateTime));
+        presenter.getFeaturedListMoreData(binding.include.swipeTarget.getPage(false), TextUtils.isEmpty(dateTime) ? 0 : Long.decode(dateTime));
     }
 
     @Override
     public void onItemClick(FamiliarRecyclerView familiarRecyclerView, View view, int position) {
         Intent i = new Intent();
         i.setClass(activity, VideoDeatilActivity.class);
-        i.putExtra(FEATURED_DETAIL_ENTITY, adapter.getItem(position));
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            ActivityOptionsCompat activityOptionsCompat =
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(activity, view, getResources().getString(R.string.featured_item_share_txt));
-            activity.startActivity(i, activityOptionsCompat.toBundle());
-//        } else {
-//            float x = view.getX();
-//            float y = view.getY();
-//            i.putExtra(PX, x);
-//            i.putExtra(PY, y);
-//            activity.startActivity(i);
-//            activity.overridePendingTransition(0, 0);
-//        }
+        PlayerVideoEntity playerVideoEntity = new PlayerVideoEntity();
+        playerVideoEntity.setList(adapter.getData().subList(position, adapter.getData().size() - 1));
+        i.putExtra(FEATURED_DETAIL_ENTITY, playerVideoEntity);
+        ActivityOptionsCompat activityOptionsCompat =
+                ActivityOptionsCompat.makeSceneTransitionAnimation(activity, view, getResources().getString(R.string.featured_item_share_txt));
+        startActivity(i, activityOptionsCompat.toBundle());
     }
 
     @Override
-    public void getFeaturedListMoreData(FeturedListEntity entity) {
-        if (entity.issueList.size() > 0) {
+    public void getFeaturedListMoreData(List<ItemList> entity) {
+//        if (entity.issueList.size() > 0) {
+//            if (binding.include.swipeTarget.page == 1) {
+//                entity.issueList.get(1).itemList.remove(0);
+//                items.addAll(entity.issueList.get(0).itemList);
+//                items.addAll(entity.issueList.get(1).itemList);
+//                adapter.setNewData(items);
+//            } else {
+//                entity.issueList.get(0).itemList.remove(0);
+//                entity.issueList.get(1).itemList.remove(0);
+//                items.addAll(entity.issueList.get(0).itemList);
+//                items.addAll(entity.issueList.get(1).itemList);
+//                adapter.notifyDataSetChanged();
+//            }
+//        }
+        if (entity.size() > 0) {
             if (binding.include.swipeTarget.page == 1) {
-                entity.issueList.get(1).itemList.remove(0);
-                items.addAll(entity.issueList.get(0).itemList);
-                items.addAll(entity.issueList.get(1).itemList);
-                adapter.setNewData(items);
-            } else {
-                entity.issueList.get(0).itemList.remove(0);
-                entity.issueList.get(1).itemList.remove(0);
-                items.addAll(entity.issueList.get(0).itemList);
-                items.addAll(entity.issueList.get(1).itemList);
-                adapter.notifyDataSetChanged();
+                items.clear();
             }
+            items.addAll(entity);
+            adapter.setNewData(items);
         }
-        setDateTime(entity);
         binding.include.swipeTarget.refresComplete();
     }
 
-    private void setDateTime(FeturedListEntity daily) {
+    public void setDateTime(FeturedListEntity daily) {
         String nextPageUrl = daily.nextPageUrl;
         dateTime = nextPageUrl.substring(nextPageUrl.indexOf("=") + 1,
                 nextPageUrl.indexOf("&"));

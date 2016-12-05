@@ -11,6 +11,7 @@ import com.cui.video.AbstractBaseFragment;
 import com.cui.video.R;
 import com.cui.video.adapter.FeaturedAdapter;
 import com.cui.video.databinding.FrankFragmentBinding;
+import com.cui.video.entity.PlayerVideoEntity;
 import com.cui.video.entity.RankListEntity;
 import com.cui.video.presenter.iml.RankFragmentPresenter;
 import com.cui.video.ui.activity.VideoDeatilActivity;
@@ -79,10 +80,12 @@ public class RankFragment extends AbstractBaseFragment<FrankFragmentBinding, Ran
     public void onItemClick(FamiliarRecyclerView familiarRecyclerView, View view, int position) {
         Intent i = new Intent();
         i.setClass(activity, VideoDeatilActivity.class);
-        i.putExtra(FEATURED_DETAIL_ENTITY, adapter.getItem(position));
-            ActivityOptionsCompat activityOptionsCompat =
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(activity, view, getResources().getString(R.string.featured_item_share_txt));
-            activity.startActivity(i, activityOptionsCompat.toBundle());
+        PlayerVideoEntity playerVideoEntity = new PlayerVideoEntity();
+        playerVideoEntity.setList(adapter.getData().subList(position, adapter.getData().size() - 1));
+        i.putExtra(FEATURED_DETAIL_ENTITY, playerVideoEntity);
+        ActivityOptionsCompat activityOptionsCompat =
+                ActivityOptionsCompat.makeSceneTransitionAnimation(activity, view, getResources().getString(R.string.featured_item_share_txt));
+        startActivity(i, activityOptionsCompat.toBundle());
     }
 
     @Override

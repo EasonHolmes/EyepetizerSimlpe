@@ -34,7 +34,7 @@ public class CustomCachingGlideModule implements GlideModule {
 //                    DecodeFormat.PREFER_RGB_565 : DecodeFormat.PREFER_ARGB_8888);
 //        }
         builder.setDecodeFormat(DecodeFormat.PREFER_RGB_565);
-//        setMemoryBigSize(context,builder);
+        setMemoryBigSize(context,builder);
 //        setDiskCacheDirectory(builder);
     }
 
@@ -101,8 +101,8 @@ public class CustomCachingGlideModule implements GlideModule {
         int defaultMemoryCacheSize = calculator.getMemoryCacheSize();
         int defaultBitmapPoolSize = calculator.getBitmapPoolSize();
 
-        int customMemoryCacheSize = (int) (1.2 * defaultMemoryCacheSize);//默认的再加20%
-        int customBitmapPoolSize = (int) (1.2 * defaultBitmapPoolSize);
+        int customMemoryCacheSize = (int) (0.5 * defaultMemoryCacheSize);//默认的再加一半
+        int customBitmapPoolSize = (int) (0.5 * defaultBitmapPoolSize);
 
         builder.setMemoryCache(new LruResourceCache(customMemoryCacheSize));//设置新的内存缓存大小
         builder.setBitmapPool(new LruBitmapPool(customBitmapPoolSize));
