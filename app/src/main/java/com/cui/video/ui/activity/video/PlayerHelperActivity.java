@@ -45,7 +45,7 @@ public class PlayerHelperActivity extends AbstractBaseActivity<PlayerVideoActBin
         //默认先隐藏最后的列表封面
         binding.setShowEnding(false);
         //固定播对象
-        playerEntity = (PlayerVideoEntity) getIntent().getParcelableExtra(PLAYER_ENTITY);
+        playerEntity = getIntent().getParcelableExtra(PLAYER_ENTITY);
         //播放ui
         emVideoView = (EMVideoView) findViewById(R.id.video_play_activity_video_view);
         //播放各种回调和接口
@@ -79,7 +79,7 @@ public class PlayerHelperActivity extends AbstractBaseActivity<PlayerVideoActBin
         return R.layout.player_video_act;
     }
 
-    private void goFullscreen() {
+    protected void goFullscreen() {
         setUiFlags(true);
     }
 
@@ -158,6 +158,7 @@ public class PlayerHelperActivity extends AbstractBaseActivity<PlayerVideoActBin
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.exomedia_controls_title:
+            case R.id.img_close:
                 finish();
                 break;
         }

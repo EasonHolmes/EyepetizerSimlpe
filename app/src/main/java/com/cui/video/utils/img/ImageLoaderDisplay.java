@@ -29,7 +29,7 @@ public class ImageLoaderDisplay {
     private static DrawableRequestBuilder getGlide(Context mContext, String imgUrl) {
         return Glide.with(mContext)
                 .load(imgUrl)
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .skipMemoryCache(true);//跳过内存缓存使用磁盘缓存默认false
 
     }
@@ -92,7 +92,7 @@ public class ImageLoaderDisplay {
         Glide.with(mContext)
                 .load(imgUrl)
                 .asBitmap()
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .skipMemoryCache(true)//跳过内存缓存使用磁盘缓存默认false
                 .into(simpleTarget);
 
@@ -116,7 +116,7 @@ public class ImageLoaderDisplay {
     public static void imageLoaderRound(Context mContext, ImageView image, int default_list_image, String imgUrl) {
         getGlide(mContext, imgUrl)
                 .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .placeholder(default_list_image)
 //                .thumbnail(0.5f)//缩略图0.5f即50%原图的大小
                 .bitmapTransform(new CenterCrop(mContext), new RoundedCornersTransformation(mContext, 30, 0,

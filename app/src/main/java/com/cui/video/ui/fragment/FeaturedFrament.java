@@ -96,20 +96,6 @@ public class FeaturedFrament extends AbstractBaseFragment<FeaturedFragmentBindin
 
     @Override
     public void getFeaturedListMoreData(List<ItemList> entity) {
-//        if (entity.issueList.size() > 0) {
-//            if (binding.include.swipeTarget.page == 1) {
-//                entity.issueList.get(1).itemList.remove(0);
-//                items.addAll(entity.issueList.get(0).itemList);
-//                items.addAll(entity.issueList.get(1).itemList);
-//                adapter.setNewData(items);
-//            } else {
-//                entity.issueList.get(0).itemList.remove(0);
-//                entity.issueList.get(1).itemList.remove(0);
-//                items.addAll(entity.issueList.get(0).itemList);
-//                items.addAll(entity.issueList.get(1).itemList);
-//                adapter.notifyDataSetChanged();
-//            }
-//        }
         if (entity.size() > 0) {
             if (binding.include.swipeTarget.page == 1) {
                 items.clear();

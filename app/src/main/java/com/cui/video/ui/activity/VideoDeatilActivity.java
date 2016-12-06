@@ -2,18 +2,18 @@ package com.cui.video.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.view.ViewCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.cui.video.AbstractBaseActivity;
 import com.cui.video.R;
+import com.cui.video.adapter.ShareSimpleListAdapter;
 import com.cui.video.databinding.VideoDetailActBinding;
+import com.cui.video.entity.ShareSimpleListItem;
 import com.cui.video.entity.PlayerVideoEntity;
 import com.cui.video.entity.ItemList;
 import com.cui.video.presenter.iml.VideoDetailPresenter;
@@ -23,18 +23,19 @@ import com.cui.video.utils.TimeUtils;
 import com.cui.video.utils.img.ImageLoaderDisplay;
 import com.cui.video.ui.activity.video.PlayerVideoActivity;
 import com.cui.video.view.iml.VideoDetailContract;
-import com.cui.video.widget.imagetransitionlibrary.ImageTransitionUtil;
 
 public class VideoDeatilActivity extends AbstractBaseActivity<VideoDetailActBinding, VideoDetailPresenter>
         implements VideoDetailContract.VideoDetailView {
     private ItemList item;
     private final int Fliptxt_duration = 500;
     private PlayerVideoEntity playerVideoEntity;
+
+
     @Override
     protected void onCreated(Bundle savedInstanceState) {
         super.setFLAG_TRANSLUCENT_STATUS();
         super.setBindingTranstionAnim();
-        playerVideoEntity = (PlayerVideoEntity) getIntent().getParcelableExtra(FeaturedFrament.FEATURED_DETAIL_ENTITY);
+        playerVideoEntity = getIntent().getParcelableExtra(FeaturedFrament.FEATURED_DETAIL_ENTITY);
         item = playerVideoEntity.getList().get(0);
         ImageLoaderDisplay.imageLoaderCallback(this, binding.imgViewpageBackground, item.data.cover.feed, new SimpleTarget<Bitmap>() {
             @Override
@@ -46,7 +47,8 @@ public class VideoDeatilActivity extends AbstractBaseActivity<VideoDetailActBind
             }
         });
         ImageLoaderDisplay.imageLoader(VideoDeatilActivity.this, binding.imgBackground, item.data.cover.blurred);
-        super.setViewsClickListener(binding.imgBack, binding.imgViewpageBackground, binding.imgPlay);
+        super.setViewsClickListener(binding.imgBack, binding.imgViewpageBackground, binding.imgPlay,
+                binding.txtShare);
     }
 
     /**
@@ -85,6 +87,49 @@ public class VideoDeatilActivity extends AbstractBaseActivity<VideoDetailActBind
             case R.id.img_back:
                 onBackPressed();
                 break;
+            case R.id.txt_share:
+                showShareDialog();
+                break;
         }
+    }
+
+    @Override
+    public void showShareDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("分享");
+        final ShareSimpleListAdapter adapter = new ShareSimpleListAdapter(this);
+        String[] array = getResources().getStringArray(R.array.share_dialog_text);
+        adapter.add(new ShareSimpleListItem.Builder(this)
+                .content(array[0])
+                .icon(R.drawable.ic_action_share_wechat_grey)
+                .build());
+        adapter.add(new ShareSimpleListItem.Builder(this)
+                .content(array[1])
+                .icon(R.drawable.ic_action_share_weibo_grey)
+                .build());
+        adapter.add(new ShareSimpleListItem.Builder(this)
+                .content(array[2])
+                .icon(R.drawable.ic_action_share_qq_grey)
+                .build());
+        adapter.add(new ShareSimpleListItem.Builder(this)
+                .content(array[3])
+                .icon(R.drawable.ic_action_more_grey)
+                .build());
+        builder.setAdapter(adapter, (dialog, which) -> {
+            switch (which) {
+                case 0:
+                    getActivityHelper().shareToWeChat(item.data.playUrl);
+                    break;
+                case 1:
+                    getActivityHelper().shareToWeibo(item.data.playUrl);
+                    break;
+                case 2:
+                    getActivityHelper().shareToQQ(item.data.playUrl);
+                    break;
+                case 3:
+                    getActivityHelper().shareMore(item.data.playUrl);
+            }
+        });
+        builder.show();
     }
 }

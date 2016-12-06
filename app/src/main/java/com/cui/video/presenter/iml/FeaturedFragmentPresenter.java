@@ -50,7 +50,7 @@ public class FeaturedFragmentPresenter extends AbstractBasePresenter<FeaturedFra
         } else {
             ApiClient.getApiService()
                     .getDaily(deteTime)
-
+                    .doOnNext(feturedListEntity -> mView.setDateTime(feturedListEntity))
                     .map(feturedListEntity -> {
                         List<ItemList> list1 = new ArrayList<ItemList>();
                         for (int i = 0; i < feturedListEntity.issueList.size(); i++) {

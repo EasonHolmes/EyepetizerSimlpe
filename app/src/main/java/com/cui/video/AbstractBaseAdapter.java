@@ -43,15 +43,15 @@ public abstract class AbstractBaseAdapter<T> extends RecyclerView.Adapter<Recycl
 
     public void setNewData(List<T> data) {
         this.mData = data;
-//        notifyItemInserted(0);
-        notifyDataSetChanged();
+        notifyItemInserted(0);
+//        notifyDataSetChanged();
         setLoadMore(data);
     }
 
     public void addData(List<T> data) {
         this.mData.addAll(data);
-//        notifyItemInserted(this.mData.size());
-        notifyDataSetChanged();
+        notifyItemInserted(this.mData.size());
+//        notifyDataSetChanged();
         setLoadMore(data);
     }
 

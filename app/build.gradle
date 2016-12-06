@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'//retrolambda
+apply plugin: 'com.antfortune.freeline'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
@@ -69,5 +70,4 @@ dependencies {
     //rxlife
     compile 'com.trello:rxlifecycle:1.0'
     compile 'com.trello:rxlifecycle-components:1.0'
-
 }

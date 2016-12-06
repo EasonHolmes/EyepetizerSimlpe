@@ -8,11 +8,13 @@
     <FrameLayout
         android:layout_width="230dp"
         android:layout_height="match_parent"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
         android:background="@drawable/ripple_background"
         android:foreground="?selectableItemBackgroundBorderless"
         android:orientation="vertical">
 
-        <com.cui.video.widget.ch.halcyon.squareprogressbar.SquareProgressBar
+        <ImageView
             android:id="@+id/img_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

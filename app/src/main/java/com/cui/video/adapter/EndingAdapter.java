@@ -39,7 +39,7 @@ public class EndingAdapter extends AbstractBaseAdapter<ItemList> {
         BindingViewHolder viewHolder = (BindingViewHolder) holder;
         ItemEndingBinding binding = (ItemEndingBinding) viewHolder.getBinding();
         ItemList entity = getItem(position);
-//        ImageLoaderDisplay.imageLoaderOverride800(mContext, binding.imgItem, entity.data.cover.feed);
+        ImageLoaderDisplay.imageLoaderOverride800(mContext, binding.imgItem, entity.data.cover.feed);
         binding.txtTitle.setText(entity.data.title);
         binding.txtClasses.setText("#" + entity.data.category + "    /    ");
         binding.txtSubtitle.setText(String.valueOf(TimeUtils.secToTime(entity.data.duration)));
