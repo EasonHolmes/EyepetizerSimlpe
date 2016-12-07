@@ -38,6 +38,7 @@
                     android:layout_height="300dp"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="centerCrop"
+                    android:transitionName="@string/classDetail_item_share_txt"
                     app:layout_collapseMode="parallax"
                     app:layout_collapseParallaxMultiplier="0.6"/>
 

@@ -2,7 +2,10 @@ package com.cui.video.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.GridLayoutManager;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -11,6 +14,7 @@ import com.cui.video.R;
 import com.cui.video.adapter.FindListAdapter;
 import com.cui.video.databinding.FindFragmentBinding;
 import com.cui.video.entity.ItemList;
+import com.cui.video.helper.TransitionHelper;
 import com.cui.video.presenter.iml.FindListPresenter;
 import com.cui.video.ui.activity.ClasssDetailActivity;
 import com.cui.video.ui.activity.RankActivity;
@@ -48,7 +52,6 @@ public class FindListFragment extends AbstractBaseFragment<FindFragmentBinding, 
 
         presenter.getFindListData();
 
-
     }
 
     /**
@@ -69,9 +72,9 @@ public class FindListFragment extends AbstractBaseFragment<FindFragmentBinding, 
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.img_item:
-                startActivity(new Intent(activity, RankActivity.class));
+                activity.transitionTo(new Intent(activity, RankActivity.class));
                 break;
         }
     }
@@ -81,7 +84,7 @@ public class FindListFragment extends AbstractBaseFragment<FindFragmentBinding, 
         Intent intent = new Intent(activity, ClasssDetailActivity.class);
         intent.putExtra(CATEGORYID, adapter.getItem(position).data.id);
         intent.putExtra(CATEGORYNAME, adapter.getItem(position).data.title);
-        activity.startActivity(intent);
+        activity.transitionTo(intent);
     }
 
     @Override

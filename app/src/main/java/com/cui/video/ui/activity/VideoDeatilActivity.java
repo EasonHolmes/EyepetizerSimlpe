@@ -16,6 +16,7 @@ import com.cui.video.databinding.VideoDetailActBinding;
 import com.cui.video.entity.ShareSimpleListItem;
 import com.cui.video.entity.PlayerVideoEntity;
 import com.cui.video.entity.ItemList;
+import com.cui.video.helper.TransitionHelper;
 import com.cui.video.presenter.iml.VideoDetailPresenter;
 import com.cui.video.ui.activity.video.PlayerHelperActivity;
 import com.cui.video.ui.fragment.FeaturedFrament;
@@ -35,6 +36,8 @@ public class VideoDeatilActivity extends AbstractBaseActivity<VideoDetailActBind
     protected void onCreated(Bundle savedInstanceState) {
         super.setFLAG_TRANSLUCENT_STATUS();
         super.setBindingTranstionAnim();
+        getWindow().setEnterTransition(TransitionHelper.buildExplodeTransitionIn());
+        getWindow().setReturnTransition(TransitionHelper.buildFadeTransition());
         playerVideoEntity = getIntent().getParcelableExtra(FeaturedFrament.FEATURED_DETAIL_ENTITY);
         item = playerVideoEntity.getList().get(0);
         ImageLoaderDisplay.imageLoaderCallback(this, binding.imgViewpageBackground, item.data.cover.feed, new SimpleTarget<Bitmap>() {
@@ -71,7 +74,6 @@ public class VideoDeatilActivity extends AbstractBaseActivity<VideoDetailActBind
     public void onBackPressed() {
         binding.txtDesc.cancle();
         Glide.get(this).clearMemory();
-        supportFinishAfterTransition();
         super.onBackPressed();
     }
 

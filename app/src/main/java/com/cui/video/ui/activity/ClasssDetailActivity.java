@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.cui.video.adapter.FeaturedAdapter;
 import com.cui.video.databinding.ClasssDetailActBinding;
 import com.cui.video.entity.ClasssDetailEntity;
 import com.cui.video.entity.PlayerVideoEntity;
+import com.cui.video.helper.TransitionHelper;
 import com.cui.video.presenter.iml.ClasssDetailPresenter;
 import com.cui.video.ui.fragment.FindListFragment;
 import com.cui.video.utils.img.ImageLoaderDisplay;
@@ -36,6 +38,9 @@ public class ClasssDetailActivity extends AbstractBaseActivity<ClasssDetailActBi
 
     @Override
     protected void onCreated(Bundle savedInstanceState) {
+        getWindow().setEnterTransition(TransitionHelper.buildSlideTransition(Gravity.BOTTOM));
+        getWindow().setReturnTransition(TransitionHelper.buildSlideTransition(Gravity.BOTTOM));
+
         categoryId = getIntent().getIntExtra(FindListFragment.CATEGORYID, -1);
         toolbarTitle = getIntent().getStringExtra(FindListFragment.CATEGORYNAME);
         super.initToolbar(toolbarTitle, true);

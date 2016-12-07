@@ -7,6 +7,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:transitionName="@string/classDetail_item_share_txt"
         android:background="@drawable/ripple_background"
         android:foreground="?selectableItemBackgroundBorderless">
 

@@ -1,5 +1,6 @@
 package com.cui.video;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.OnRebindCallback;
 import android.databinding.ViewDataBinding;
@@ -9,6 +10,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.TransitionManager;
@@ -20,6 +23,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.cui.video.helper.ActivityHelper;
+import com.cui.video.helper.TransitionHelper;
 import com.cui.video.presenter.AbstractBasePresenter;
 import com.cui.video.view.BaseContract;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
@@ -108,7 +112,6 @@ public abstract class AbstractBaseActivity<B extends ViewDataBinding, T extends 
         mToolbar.setTitle(titleStr);
         setSupportActionBar(mToolbar);
         if (isNeedBack) {
-//            setSwipeEnabled(false);
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -118,23 +121,25 @@ public abstract class AbstractBaseActivity<B extends ViewDataBinding, T extends 
         initToolbar(getResources().getString(titleResourceId), isNeedBack);
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_main,menu);
-        return super.onCreateOptionsMenu(menu);
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case android.R.id.home:
-                onBackPressed();//在这调用这个相当于finish。但finish不会调用this.onbackpressed就等于无返回键没有动画了
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+    public void onBackPressed() {
+        supportFinishAfterTransition();
+        super.onBackPressed();
     }
+
+    @SuppressWarnings("unchecked")
+    public void transitionTo(Intent i) {
+        final Pair<View, String>[] pairs = TransitionHelper.createSafeTransitionParticipants(this, true);
+        ActivityOptionsCompat transitionActivityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(this, pairs);
+        startActivity(i, transitionActivityOptions.toBundle());
+    }
+
 
     /**
      * 正在加载对话框按返回键取消

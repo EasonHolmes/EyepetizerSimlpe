@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.cui.video.databinding.FeaturedFragmentBinding;
 import com.cui.video.entity.FeturedListEntity;
 import com.cui.video.entity.ItemList;
 import com.cui.video.entity.PlayerVideoEntity;
+import com.cui.video.helper.TransitionHelper;
 import com.cui.video.presenter.iml.FeaturedFragmentPresenter;
 import com.cui.video.ui.activity.VideoDeatilActivity;
 import com.cui.video.ui.activity.SearchFeaturedActivity;
@@ -89,9 +91,10 @@ public class FeaturedFrament extends AbstractBaseFragment<FeaturedFragmentBindin
         PlayerVideoEntity playerVideoEntity = new PlayerVideoEntity();
         playerVideoEntity.setList(adapter.getData().subList(position, adapter.getData().size() - 1));
         i.putExtra(FEATURED_DETAIL_ENTITY, playerVideoEntity);
-        ActivityOptionsCompat activityOptionsCompat =
-                ActivityOptionsCompat.makeSceneTransitionAnimation(activity, view, getResources().getString(R.string.featured_item_share_txt));
-        startActivity(i, activityOptionsCompat.toBundle());
+
+        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                activity, TransitionHelper.createSafeTransitionParticipants(activity, true, Pair.create(view, getResources().getString(R.string.featured_item_share_txt))));
+        activity.startActivity(i, activityOptionsCompat.toBundle());
     }
 
     @Override
