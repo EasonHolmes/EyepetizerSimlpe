@@ -78,6 +78,7 @@
                     android:gravity="center"
                     android:text="我就是爱拍色和暴力"
                     android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:textSize="@dimen/big_16text_size"
                     />
 

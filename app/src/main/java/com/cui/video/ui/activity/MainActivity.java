@@ -1,5 +1,6 @@
 package com.cui.video.ui.activity;
 
+import android.animation.Animator;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,13 +9,18 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
 
 import com.cui.video.AbstractBaseActivity;
 import com.cui.video.R;
 import com.cui.video.adapter.MyViewPagerAdapter;
 import com.cui.video.databinding.MainActBinding;
+import com.cui.video.helper.TransitionHelper;
 import com.cui.video.presenter.iml.MainActivityPresenter;
 import com.cui.video.ui.fragment.FeaturedFrament;
 import com.cui.video.ui.fragment.FindListFragment;
@@ -24,6 +30,7 @@ import com.cui.video.view.iml.MainContract;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.cui.video.R.id.root_layout;
 import static com.cui.video.R.layout.featured_fragment;
 import static com.cui.video.R.layout.main_act;
 
@@ -33,6 +40,7 @@ public class MainActivity extends AbstractBaseActivity<MainActBinding, MainActiv
     private Drawable[] default_drawable;
     private Drawable[] select_drawable;
     private TextView[] textViews;
+    private ViewGroup rootView;
 
     @Override
     protected void onCreated(Bundle savedInstanceState) {

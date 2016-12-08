@@ -40,7 +40,7 @@ import static android.R.attr.mode;
  */
 public class TransitionHelper {
 
-    private static final int enterTransitionDurction = 500;
+    public static final int enterTransitionDurction = 500;
 
     /**
      * Create the transition participants required during a activity transition while
