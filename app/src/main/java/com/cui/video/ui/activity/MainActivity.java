@@ -111,4 +111,10 @@ public class MainActivity extends AbstractBaseActivity<MainActBinding, MainActiv
     public void onPageSelected(int position) {
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

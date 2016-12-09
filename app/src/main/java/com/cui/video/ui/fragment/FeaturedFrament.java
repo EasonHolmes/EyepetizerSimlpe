@@ -1,6 +1,5 @@
 package com.cui.video.ui.fragment;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -11,8 +10,6 @@ import android.view.View;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.FutureTarget;
 import com.cui.video.AbstractBaseFragment;
 import com.cui.video.R;
 import com.cui.video.adapter.FeaturedAdapter;
@@ -25,15 +22,11 @@ import com.cui.video.presenter.iml.FeaturedFragmentPresenter;
 import com.cui.video.ui.activity.VideoDeatilActivity;
 import com.cui.video.ui.activity.SearchFeaturedActivity;
 import com.cui.video.view.iml.FeaturedFragmentContract;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import cn.iwgang.familiarrecyclerview.FamiliarRecyclerView;
 
-import static com.bumptech.glide.Glide.with;
 
 public class FeaturedFrament extends AbstractBaseFragment<FeaturedFragmentBinding, FeaturedFragmentPresenter>
         implements FeaturedFragmentContract.FeaturedFragmentView, OnLoadMoreListener, FamiliarRecyclerView.OnItemClickListener, OnRefreshListener {
@@ -73,8 +66,10 @@ public class FeaturedFrament extends AbstractBaseFragment<FeaturedFragmentBindin
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_search_featured:
-                startActivity(new Intent(activity, SearchFeaturedActivity.class));
-                activity.overridePendingTransition(0, 0);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        activity, TransitionHelper.createSafeTransitionParticipants(activity, true, Pair.create(view, getResources().getString(R.string.featured_search_share_txt))));
+                activity.startActivity(new Intent(activity, SearchFeaturedActivity.class),
+                        activityOptionsCompat.toBundle());
                 break;
         }
     }
@@ -94,7 +89,7 @@ public class FeaturedFrament extends AbstractBaseFragment<FeaturedFragmentBindin
 
         ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 activity, TransitionHelper.createSafeTransitionParticipants(activity, true, Pair.create(view, getResources().getString(R.string.featured_item_share_txt))));
-        activity.startActivity(i, activityOptionsCompat.toBundle());
+        activity.startActivity(i,activityOptionsCompat.toBundle());
     }
 
     @Override

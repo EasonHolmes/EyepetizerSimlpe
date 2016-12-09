@@ -39,7 +39,13 @@ public class VideoDeatilActivity extends AbstractBaseActivity<VideoDetailActBind
         getWindow().setEnterTransition(TransitionHelper.buildExplodeTransitionIn());
         getWindow().setReturnTransition(TransitionHelper.buildFadeTransition());
         playerVideoEntity = getIntent().getParcelableExtra(FeaturedFrament.FEATURED_DETAIL_ENTITY);
-        item = playerVideoEntity.getList().get(0);
+        if (playerVideoEntity.getList() != null && playerVideoEntity.getList().size() > 0){
+            item = playerVideoEntity.getList().get(0);
+        }else{
+            refreshError("未获取到数据");
+            return;
+        }
+
         ImageLoaderDisplay.imageLoaderCallback(this, binding.imgViewpageBackground, item.data.cover.feed, new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {

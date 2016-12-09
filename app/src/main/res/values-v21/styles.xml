@@ -10,6 +10,7 @@
         <!--<item name="windowActionModeOverlay">true</item>-->
         <!--<item name="android:navigationBarColor">@color/app_status_color</item>-->
 
+        <!--设置了透明效果在nexus6 android7.0上快速点击控件打开intent界面时会出现home键按下的效果不知道为何-->
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
 

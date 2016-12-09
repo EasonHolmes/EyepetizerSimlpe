@@ -58,9 +58,10 @@ public abstract class AbstractBaseActivity<B extends ViewDataBinding, T extends 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = initPresenter();
         //如果是过于简单的页面没有P层没有写泛型的话这个binding使用的时候需要强转
         binding = DataBindingUtil.setContentView(this, setDataBindingContentViewId());
+
+        presenter = initPresenter();
 
         onCreated(savedInstanceState);
     }

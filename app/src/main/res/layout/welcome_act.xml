@@ -13,8 +13,7 @@
             android:id="@+id/img_wel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/landing_background"/>
+            android:scaleType="centerCrop"/>
 
 
         <TextView
@@ -28,7 +27,6 @@
             android:gravity="center"
             android:textStyle="bold"
             android:textSize="@dimen/big_16text_size"/>
-
     </FrameLayout>
 
 </layout>

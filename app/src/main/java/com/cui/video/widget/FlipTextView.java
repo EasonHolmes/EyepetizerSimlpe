@@ -20,7 +20,7 @@ import java.util.TimerTask;
 public class FlipTextView extends TextView {
     private String content;
     private int index;
-    private static Timer timer;
+    private Timer timer;
     private TimerTasks timerTasks;
     private final int DELAYEDTIME = 260;
     private Handler hand = new Handler(Looper.getMainLooper(), new Handler.Callback() {

@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.FrameLayout;
 
+import com.cui.video.utils.LogUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +18,7 @@ import java.util.List;
  * https://github.com/iwgang/FamiliarRecyclerView
  */
 public class FamiliarWrapRecyclerViewAdapter extends RecyclerView.Adapter implements View.OnClickListener, View.OnLongClickListener {
-    private static final int MIN_INTERVAL_CLICK_TIME = 100;
+    private static final int MIN_INTERVAL_CLICK_TIME = 500;
 
     private static final int VIEW_TYPE_HEADER = -1;
     private static final int VIEW_TYPE_FOOTER = -2;

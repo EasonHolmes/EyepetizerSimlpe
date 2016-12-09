@@ -2,7 +2,6 @@ package com.cui.video.ui.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +10,15 @@ import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SearchView;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
+import android.widget.LinearLayout;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
+import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.cui.video.AbstractBaseActivity;
 import com.cui.video.R;
 import com.cui.video.adapter.FeaturedAdapter;
@@ -24,7 +27,6 @@ import com.cui.video.entity.PlayerVideoEntity;
 import com.cui.video.entity.SearchFeaturedListEntity;
 import com.cui.video.helper.TransitionHelper;
 import com.cui.video.presenter.iml.SearchFeaturedPresenter;
-import com.cui.video.ui.fragment.FeaturedFrament;
 import com.cui.video.view.iml.SearchFeaturedContract;
 
 import cn.iwgang.familiarrecyclerview.FamiliarRecyclerView;
@@ -39,6 +41,8 @@ public class SearchFeaturedActivity extends AbstractBaseActivity<SearchFeaturedA
     private int start;
     private int num = 10;
     private String queryStr;
+    private LinearLayout rootLayout;
+    private boolean first;
 
     @Override
     protected void onResume() {
@@ -48,12 +52,18 @@ public class SearchFeaturedActivity extends AbstractBaseActivity<SearchFeaturedA
 
     @Override
     protected void onCreated(Bundle savedInstanceState) {
-        binding.include.swipeToLoadLayout.setVisibility(View.GONE);
-        binding.backgroundView.animate().scaleY(getDeviceHeight(this))
-                .setInterpolator(new AccelerateInterpolator())
-                .setDuration(scaleX_duration)
-                .start();
-
+        rootLayout = binding.rootLayout;
+        rootLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                Animator animator = ViewAnimationUtils.createCircularReveal(rootLayout, rootLayout.getWidth(),
+                        0, 0, (float) Math.hypot(rootLayout.getWidth(), rootLayout.getHeight()));
+                animator.setDuration(TransitionHelper.TransitionDurction);
+                animator.setInterpolator(new AccelerateInterpolator());
+                animator.start();
+                rootLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
         adapter = new FeaturedAdapter(this, null);
         binding.include.swipeTarget.initRefreshSwipe(binding.include.swipeToLoadLayout, null, this);
         binding.include.swipeTarget.setLayoutManager(new LinearLayoutManager(this));
@@ -63,6 +73,7 @@ public class SearchFeaturedActivity extends AbstractBaseActivity<SearchFeaturedA
 
         binding.searchView.setOnQueryTextListener(this);
         binding.searchView.onActionViewExpanded();
+
 
         setViewsClickListener(binding.txtCancle);
     }
@@ -121,18 +132,18 @@ public class SearchFeaturedActivity extends AbstractBaseActivity<SearchFeaturedA
 
     @Override
     public void onBackPressed() {
-        binding.include.swipeToLoadLayout.setVisibility(View.GONE);
-        binding.backgroundView.animate().scaleY(0)
-                .setInterpolator(new DecelerateInterpolator())
-                .setDuration(scaleX_duration)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        binding.rootLayout.setVisibility(View.GONE);
-                        SearchFeaturedActivity.super.onBackPressed();
-                    }
-                })
-                .start();
+        Animator animator = ViewAnimationUtils.createCircularReveal(rootLayout, rootLayout.getWidth(),
+                0, (float) Math.hypot(rootLayout.getWidth(), rootLayout.getHeight()), 0);
+        animator.setDuration(TransitionHelper.TransitionDurction);
+        animator.setInterpolator(new AccelerateInterpolator());
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                rootLayout.setVisibility(View.GONE);
+                SearchFeaturedActivity.super.onBackPressed();
+            }
+        });
+        animator.start();
     }
 
     @Override

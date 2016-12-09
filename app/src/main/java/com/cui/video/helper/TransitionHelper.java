@@ -19,28 +19,22 @@ package com.cui.video.helper;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.transition.Visibility;
 import android.support.v4.util.Pair;
 import android.transition.Explode;
 import android.transition.Fade;
 import android.transition.Slide;
-import android.view.Gravity;
 import android.view.View;
-
-import com.cui.video.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static android.R.attr.mode;
 
 /**
  * Helper class for creating content transitions used with {@link android.app.ActivityOptions}.
  */
 public class TransitionHelper {
 
-    public static final int enterTransitionDurction = 500;
+    public static final int TransitionDurction = 500;
 
     /**
      * Create the transition participants required during a activity transition while
@@ -84,26 +78,26 @@ public class TransitionHelper {
     public static Slide buildSlideTransition(int gravity) {
         Slide enterTransition = new Slide();
         enterTransition.setSlideEdge(gravity);
-        enterTransition.setDuration(enterTransitionDurction);
+        enterTransition.setDuration(TransitionDurction);
         return enterTransition;
     }
 
     public static Explode buildExplodeTransitionIn() {
         Explode enterTransition = new Explode();
         enterTransition.setMode(android.transition.Visibility.MODE_IN);
-        enterTransition.setDuration(enterTransitionDurction);
+        enterTransition.setDuration(TransitionDurction);
         return enterTransition;
     }
     public static Explode buildExplodeTransitionOut() {
         Explode enterTransition = new Explode();
         enterTransition.setMode(android.transition.Visibility.MODE_OUT);
-        enterTransition.setDuration(enterTransitionDurction);
+        enterTransition.setDuration(TransitionDurction);
         return enterTransition;
     }
 
     public static Fade buildFadeTransition() {
         Fade enterTransition = new Fade();
-        enterTransition.setDuration(enterTransitionDurction);
+        enterTransition.setDuration(TransitionDurction);
         return enterTransition;
     }
 
