@@ -62,7 +62,7 @@ public class WelcomeActivity extends AbstractBaseActivity<WelcomeActBinding, Wel
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                transitionTo(new Intent(WelcomeActivity.this, MainActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
                 WelcomeActivity.super.onBackPressed();
             }
 
